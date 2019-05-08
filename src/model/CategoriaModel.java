@@ -23,6 +23,9 @@ public class CategoriaModel extends CategoriaClass{
 	// ---- methods
 	public void loadData() throws SQLException 
 	{
+		
+		this.createConnection();
+		
 		Statement st = this.con.createStatement();
 		ResultSet rs = st.executeQuery("SELECT * FROM categoria");
 		
