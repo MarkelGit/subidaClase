@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import model.FacturaModel;
 
 /**
- * Servlet implementation class CBorrar
+ * Servlet implementation class CBorrar2
  */
-@WebServlet("/CBorrar")
-public class CBorrar extends HttpServlet {
+@WebServlet("/CBorrar2")
+public class CBorrar2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CBorrar() {
+    public CBorrar2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +30,19 @@ public class CBorrar extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int ident=Integer.parseInt(request.getParameter("id"));
 		FacturaModel newFactura = new FacturaModel();
-		int id;
+		newFactura.setIdFactura(ident);
 		try {
-			newFactura.loadData();
+			newFactura.delete_data();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		id=Integer.parseInt(request.getParameter("id"));
 		
-		
-		for (int i = 0; i < newFactura.getList().size(); i++) {
-			if (newFactura.getList().get(i).getIdFactura()==id) {
-				newFactura.getList().remove(i);
-			}
-		}
-		
-		response.sendRedirect("CAdmin.java");
+		//System.out.print(id);
+		//response.sendRedirect("CAdmin");
 	}
 
 	/**

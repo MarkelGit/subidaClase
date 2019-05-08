@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class FacturaModel extends FacturaClass implements datos_empresa{
 	
-	private ArrayList<FacturaClass> list = new ArrayList<FacturaClass>();
+	private ArrayList<FacturaModel> list = new ArrayList<FacturaModel>();
 
 	// ---- CONSTRUCTOR----
 
@@ -16,7 +16,7 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<FacturaClass> getList() {
+	public ArrayList<FacturaModel> getList() {
 		return list;
 	}
 
@@ -49,7 +49,7 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 	{
 		this.createConnection();
 	  	Statement st = this.con.createStatement();            	
-	  	st.executeUpdate("DELETE FROM `factura` WHERE id_factura='"+this.getIdFactura());
+	  	st.executeUpdate("DELETE FROM factura WHERE id_factura="+this.idFactura);
 	              	
 	        	this.con.close();
 	}
