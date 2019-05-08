@@ -40,13 +40,14 @@ public class CBorrar extends HttpServlet {
 		}
 		id=Integer.parseInt(request.getParameter("id"));
 		
+		
 		for (int i = 0; i < newFactura.getList().size(); i++) {
 			if (newFactura.getList().get(i).getIdFactura()==id) {
 				newFactura.getList().remove(i);
 			}
 		}
 		
-		response.sendRedirect("CAdmin.java");
+		response.sendRedirect("CAdmin");
 	}
 
 	/**
