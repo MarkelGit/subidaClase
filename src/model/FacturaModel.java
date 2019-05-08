@@ -35,9 +35,9 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 			newC.setDireccion_cliente(rs.getString(4));
 			newC.setNumero_tarjeta(rs.getString(5));
 			newC.setCaducidad_tarjeta(rs.getString(6));
-			newC.setCvc_tarjeta(rs.getString(6));
-			newC.setFecha_compra(rs.getString(6));
-			newC.setPrecio_total(Double.parseDouble(rs.getString(6)));
+			newC.setCvc_tarjeta(rs.getString(7));
+			newC.setFecha_compra(rs.getString(8));
+			newC.setPrecio_total(Double.parseDouble(rs.getString(9)));
 			this.list.add(newC);
 		}
 		this.con.close();
