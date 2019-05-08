@@ -45,5 +45,12 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 		}
 		this.con.close();
 	}
-
+	public void delete_data() throws SQLException
+	{
+		this.createConnection();
+	  	Statement st = this.con.createStatement();            	
+	  	st.executeUpdate("DELETE FROM `factura` WHERE id_factura='"+this.getIdFactura());
+	              	
+	        	this.con.close();
+	}
 }
