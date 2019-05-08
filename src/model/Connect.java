@@ -9,7 +9,7 @@ public class Connect {
 
 	// ---- variables ----- //
 	protected String driver = "com.mysql.jdbc.Driver";
-	protected String url = "jdbc:mysql://localhost:3306/proyecto_final";
+	protected String url = "jdbc:mysql://10.22.72.35:3306/proyecto_final";
 	protected String userBbdd = "root";
 	protected String passBbdd = "";
 	protected Connection con = null;
