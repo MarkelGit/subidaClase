@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Misuri Comics</title>
-<link rel="icon" href="/images/favicon.png" type="image/png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -31,7 +30,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-
+	
+<link rel="icon" type="image/png" href="https://icon-icons.com/icons2/900/PNG/32/superhero_cyclops_hero_comic_icon-icons.com_69233.png" />
 </head>
 <body>
 	<header>

@@ -8,32 +8,30 @@ import java.sql.*;
 public class Connect {
 
 	// ---- variables ----- //
-	protected String driver = "com.mysql.jdbc.Driver";
-	protected String url = "jdbc:mysql://10.22.72.35:3306/proyecto_final";
-	protected String userBbdd = "root";
-	protected String passBbdd = "";
-	protected Connection con = null;
+
+	protected Connection con;
 
 	public Connect() {
       	super();
-      	{
-            	try {
-                  	// ----- connecting procedure ----//
-                  	Class.forName(driver);
-                  	con = DriverManager.getConnection(url, userBbdd, passBbdd);
-
-            	} catch (Exception ex) {
-                  	con = null;
-            	}
-      	}
+      	this.con = null;
 	}
 
-	public Connection getConnection()
-	/*
-	 * this function return the connection itself
-	 */
-	{
-      	return this.con;
+	public Connection createConnection() {
+		String driver = "com.mysql.jdbc.Driver";
+		String url = "jdbc:mysql://localhost:3306/proyecto_final";
+		String userBbdd = "root";
+		String passBbdd = "";
+		
+			try {
+	          	// ----- connecting procedure ----//
+	          	Class.forName(driver);
+	          	con = DriverManager.getConnection(url, userBbdd, passBbdd);
+	
+	    	} catch (Exception ex) {
+	          	con = null;
+	    	}
+			
+			return this.con;
 	}
 
 	// ---------------------------------------------

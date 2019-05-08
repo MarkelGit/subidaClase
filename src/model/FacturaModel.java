@@ -23,6 +23,9 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 	// ---- methods
 	public void loadData() throws SQLException 
 	{
+		
+		this.createConnection();
+		
 		Statement st = this.con.createStatement();
 		ResultSet rs = st.executeQuery("SELECT * FROM factura");
 		
