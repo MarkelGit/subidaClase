@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ProductoModel extends ProductoClass{
 	
-	private ArrayList<ProductoClass> list = new ArrayList<ProductoClass>();
+	private ArrayList<ProductoModel> list = new ArrayList<ProductoModel>();
 
 	// ---- CONSTRUCTOR----
 
@@ -16,7 +16,7 @@ public class ProductoModel extends ProductoClass{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<ProductoClass> getList() {
+	public ArrayList<ProductoModel> getList() {
 		return list;
 	}
 
