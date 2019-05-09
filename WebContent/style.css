@@ -12,8 +12,7 @@
   }
 
   .carousel-caption > h5, p{
-    color: black;
-    background-color: #fff;
+    color: rgb(151, 151, 151);
   }
   
   /* Declare heights because of positioning of img element */
