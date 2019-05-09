@@ -1,7 +1,18 @@
+  body {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  /* CUSTOMIZE MAIN
+  -------------------------------------------------- */
+
+  main {
+    background-color: #dc3545!important;
+  }
+
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
-  
-  
+
   /* Carousel base class */
   .carousel {
     margin-bottom: 4rem;
@@ -27,9 +38,6 @@
     min-width: 100%;
     height: 32rem;
   }
-   
-  
-  
 
   /* CUSTOMIZE THE CARDS
   -------------------------------------------------- */
@@ -42,16 +50,15 @@
   .card-body >.paragraph> p{
     text-align: justify;
     text-overflow: ellipsis;
-}
-.paragraph{
-  overflow: hidden;
-  margin-bottom: 20px;
-  max-height: 188px;
-}
+  }
+  .paragraph{
+    overflow: hidden;
+    margin-bottom: 20px;
+    max-height: 188px;
+  }
 
-/* CUSTOMIZE THE MODAL
-
---------------------------------------------------------- */
-#Modal{
-  display: none;
-}
+  /* CUSTOMIZE THE MODAL
+  -------------------------------------------------- */
+  #productoModal{
+    display: none;
+  }
