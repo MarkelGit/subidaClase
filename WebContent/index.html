@@ -120,7 +120,7 @@
 
 	<script>
 	$(document).ready(function(){
-		$.getJSON( "producto.json", function( data ) {
+		$.getJSON( "http://localhost:8080/proyecto_final/ApiProductos?idProducto=&nombre_producto=&precio_producto=&descripcion=&stock=&imagen=", function( data ) {
 			console.log(data);
 			var html = '';
 
