@@ -10,6 +10,10 @@
     bottom: 3rem;
     z-index: 10;
   }
+
+  .carousel-caption > h5, p{
+    color: rgb(151, 151, 151);
+  }
   
   /* Declare heights because of positioning of img element */
   .carousel-item {
@@ -22,3 +26,15 @@
     min-width: 100%;
     height: 32rem;
   }
+
+  /* CUSTOMIZE THE CARDS
+  -------------------------------------------------- */
+
+  .card > img{
+    margin: auto;
+    width: 200px;
+    height: 300px;
+  }
+  .card-body > p{
+    text-align: justify;
+}
