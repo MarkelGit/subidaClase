@@ -1,14 +1,8 @@
-$(document).ready(function(){
-    $.getJSON( "http://localhost:8080/proyecto_final/producto/CJson?id_producto=&nombre_producto=&precio_producto=&descripcion=&stock=&imagen=", function( data ) {
-        console.log(data);
-    var items = [];
-        $.each( data, function( key, val ) {
-          items.push( "<li id='" + key + "'>" + val + "</li>" );
-        });
-       
-        $( "<ul/>", {
-          "class": "my-new-list",
-          html: items.join( "" )
-        }).appendTo( "body" );
-      });
+$(document).ready(function () {
+  $('.modalButton').on("click", function(){
+    var id=$(this).data("id");
+    console.log(id);
+    $("#Modal .modal-title").text("Datuak kargatzen");
+    $("#Modal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
+});
 });
