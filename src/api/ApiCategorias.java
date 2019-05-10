@@ -46,7 +46,7 @@ CategoriaModel categoriaMdelo =new CategoriaModel();
 		
 		PrintWriter out = response.getWriter();
 		
-		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
