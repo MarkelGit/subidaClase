@@ -1,5 +1,5 @@
 $(document).ready(function () {
-		$.getJSON( "http://localhost:8080/proyecto_final/ApiProductos?idProducto=&nombre_producto=&precio_producto=&descripcion=&stock=&imagen=", function( data ) {
+		$.getJSON( "http://localhost:8080/proyecto_final/ApiProductos", function( data ) {
 			console.log(data);
 			var html = '';
 
@@ -27,9 +27,15 @@ $(document).ready(function () {
         $('.modalButton').on("click", function(){
           var id=$(this).data("id");
           console.log(id);
+//llamada a /apiProducto?id=
+
           $("#productoModal .modal-title").text("Datuak kargatzen");
           $("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
           $('#productoModal').modal('show');
       });
-		});
+    });
+
+
+    
+
 });
