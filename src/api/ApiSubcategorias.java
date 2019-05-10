@@ -1,4 +1,4 @@
-package controller;
+package api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONStringer;
 
-import model.ProductoModel;
+
+import model.SubcategoriaModel;
 
 /**
- * Servlet implementation class ApiProductos
+ * Servlet implementation class ApiSubcategorias
  */
-@WebServlet("/ApiProductos")
-public class ApiProductos extends HttpServlet {
+@WebServlet("/ApiSubcategorias")
+public class ApiSubcategorias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApiProductos() {
+    public ApiSubcategorias() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +34,16 @@ public class ApiProductos extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ProductoModel productoModelo =new ProductoModel();
+SubcategoriaModel subcategoriaModelo =new SubcategoriaModel();
 		
 		try {
-			productoModelo.loadData();
+			subcategoriaModelo.loadData();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String jsonString = JSONStringer.valueToString(productoModelo.getList());
+		String jsonString = JSONStringer.valueToString(subcategoriaModelo.getList());
 		
 		PrintWriter out = response.getWriter();
 		
@@ -53,7 +53,6 @@ public class ApiProductos extends HttpServlet {
 		
 		out.print(jsonString);
 		out.flush();
-		
 	}
 
 	/**

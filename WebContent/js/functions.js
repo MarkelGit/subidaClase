@@ -36,6 +36,27 @@ $(document).ready(function () {
     });
 
 
-    
+    $.getJSON( "http://localhost:8080/proyecto_final/ApiCategorias", function( dataCat ) {
+			console.log(dataCat);
+	
 
 });
+{/* <ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Todos<span
+							class="sr-only">(current)</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Mangas</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Comics </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Europeo</a> <a
+								class="dropdown-item" href="#">Superheroes</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Ofertas</a>
+						</div></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button>
+				</form> */};
+			});
