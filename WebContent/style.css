@@ -1,13 +1,16 @@
   body {
     margin: 0;
     box-sizing: border-box;
+    background-color: #dc3545!important;
   }
   
-  /* CUSTOMIZE MAIN
+  /* CUSTOMIZE THE CONTAINER
   -------------------------------------------------- */
-
-  main {
-    background-color: #dc3545!important;
+  .container {
+    background-color: whitesmoke;
+    padding: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
   }
 
   /* CUSTOMIZE THE CAROUSEL
@@ -50,11 +53,12 @@
   .card-body >.paragraph> p{
     text-align: justify;
     text-overflow: ellipsis;
+    max-height: 190px;
   }
   .paragraph{
     overflow: hidden;
     margin-bottom: 20px;
-    max-height: 188px;
+    max-height: 190px;
   }
 
   /* CUSTOMIZE THE MODAL
