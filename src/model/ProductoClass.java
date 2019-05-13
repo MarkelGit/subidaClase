@@ -3,7 +3,7 @@ package model;
 public class ProductoClass extends Connect{
 	
 	protected int idProducto;
-	protected int idCategoria;
+	protected int idSubcategoria;
 	protected String nombre_producto;
 	protected double precio_producto;
 	protected String descripcion;
@@ -19,12 +19,12 @@ public class ProductoClass extends Connect{
 		return idProducto;
 	}
 
-	public int getIdCategoria() {
-		return idCategoria;
+	public int getIdSubcategoria() {
+		return idSubcategoria;
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdSubcategoria(int idCategoria) {
+		this.idSubcategoria = idCategoria;
 	}
 
 	public void setIdProducto(int idProducto) {
