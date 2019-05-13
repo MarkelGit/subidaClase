@@ -3,9 +3,11 @@
     box-sizing: border-box;
     background-color: #dc3545!important;
   }
-  nav{
-    display: sticky;
+
+  header{
+    position: sticky;
     top: 0;
+    z-index: 20;
   }
   
   /* CUSTOMIZE THE CONTAINER
