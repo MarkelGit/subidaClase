@@ -3,6 +3,10 @@
     box-sizing: border-box;
     background-color: #dc3545!important;
   }
+  nav{
+    display: sticky;
+    top: 0;
+  }
   
   /* CUSTOMIZE THE CONTAINER
   -------------------------------------------------- */

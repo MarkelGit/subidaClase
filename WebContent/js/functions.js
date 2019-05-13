@@ -41,6 +41,8 @@ $(document).ready(function () {
 				   <li class="nav-item active"><a class="nav-link" href="#">Todos<span
 						   class="sr-only">(current)</span></a></li>
 				   <li class="nav-item"><a class="nav-link" href="#">Mangas</a></li>
+
+
 				   <li class="nav-item dropdown"><a
 					   class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					   role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -53,6 +55,8 @@ $(document).ready(function () {
 						   <a class="dropdown-item" href="#">Ofertas</a>
 
 					   </div></li>
+
+
 			   </ul>
 			   <form class="form-inline my-2 my-lg-0">
 				   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button>
@@ -64,10 +68,12 @@ function getCategorias() {
 		console.log(dataCat);
 		$.getJSON("http://localhost:8080/proyecto_final/ApiSubcategorias", function (dataSub) {
 			htmlzatia='<ul class="navbar-nav mr-auto">';
+			console.log(dataSub);
 			for (i in dataCat) {
 				var linea = '<li class="nav-item"><a class="nav-link" href="#">' + dataCat[i].nombre_categoria + '</a></li>';
 				var dropdown = 0;
 				for (y in dataSub) {
+					
 					if (dropdown == 0 && dataSub[y].idCategoria == dataCat[i].idCategoria) {
 						dropdown = 1;
 						linea = '<li class="nav-item dropdown"><a';
@@ -82,13 +88,14 @@ function getCategorias() {
 					}
 
 				}
+				console.log(dropdown);
 				if (dropdown == 1) {
 					linea += '</div></li>';
 				}
 				htmlzatia += linea;
 			}
-			htmlzatia += '<form class="form-inline my-2 my-lg-0"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button> </form> ';
-			$('#categoriaList').html(htmlzatia);
+			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button> </form> ';
+			$('#navbarToggleExternalContent').html(htmlzatia);
 
 		});
 	});

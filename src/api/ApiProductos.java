@@ -38,21 +38,23 @@ public class ApiProductos extends HttpServlet {
 		
 		try {
 			productoModelo.loadData();
+			String jsonString = JSONStringer.valueToString(productoModelo.getList());
+			
+			PrintWriter out = response.getWriter();
+			
+			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			
+			out.print(jsonString);
+			out.flush();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String jsonString = JSONStringer.valueToString(productoModelo.getList());
-		
-		PrintWriter out = response.getWriter();
-		
-		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		
-		out.print(jsonString);
-		out.flush();
+
 		
 	}
 
