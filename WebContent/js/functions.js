@@ -73,25 +73,24 @@ function getCategorias() {
 				var linea = '<li class="nav-item"><a class="nav-link" href="#">' + dataCat[i].nombre_categoria + '</a></li>';
 				var dropdown = 0;
 				for (y in dataSub) {
-					
 					if (dropdown == 0 && dataSub[y].idCategoria == dataCat[i].idCategoria) {
 						dropdown = 1;
-						linea = '<li class="nav-item dropdown"><a';
+						linea = '<li class="nav-item dropdown"><a ';
 						linea += 'class="nav-link dropdown-toggle" href="#" id="navbarDropdown"';
 						linea += 'role="button" data-toggle="dropdown" aria-haspopup="true"';
 						linea += 'aria-expanded="false"> ' + dataCat[i].nombre_categoria + ' </a>';
 						linea += '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
 						linea += '<a class="dropdown-item" href="#">' + dataSub[y].nombre_categoria + '</a> ';
 					}
-					if (dropdown == 1 && dataSub[y].idCategoria == dataCat[i].idCategoria) {
+					else if (dropdown == 1 && dataSub[y].idCategoria == dataCat[i].idCategoria) {
 						linea += '<a class="dropdown-item" href="#">' + dataSub[y].nombre_categoria + '</a>';
 					}
-
 				}
 				console.log(dropdown);
 				if (dropdown == 1) {
 					linea += '</div></li>';
 				}
+				
 				htmlzatia += linea;
 			}
 			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button> </form> ';
