@@ -1,4 +1,4 @@
-package controller;
+package api;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONStringer;
 
-import model.ProductoModel;
+import model.CategoriaModel;
 
 /**
- * Servlet implementation class ApiProductos
+ * Servlet implementation class ApiCategorias
  */
-@WebServlet("/ApiProductos")
-public class ApiProductos extends HttpServlet {
+@WebServlet("/ApiCategorias")
+public class ApiCategorias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApiProductos() {
+    public ApiCategorias() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,27 +33,25 @@ public class ApiProductos extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ProductoModel productoModelo =new ProductoModel();
+CategoriaModel categoriaMdelo =new CategoriaModel();
 		
 		try {
-			productoModelo.loadData();
+			categoriaMdelo.loadData();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String jsonString = JSONStringer.valueToString(productoModelo.getList());
+		String jsonString = JSONStringer.valueToString(categoriaMdelo.getList());
 		
 		PrintWriter out = response.getWriter();
 		
-		response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
 		out.print(jsonString);
 		out.flush();
-		
 	}
 
 	/**
