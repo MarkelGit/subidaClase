@@ -14,7 +14,7 @@ $(document).ready(function () {
 			html += '</div>'
 			html += '<div class="d-flex justify-content-between align-items-center">';
 			html += '<div class="btn-group">';
-			html += '<button type="button" class="btn btn-success modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
+			html += '<button type="button" class="btn btn-success modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + i + '">Ver mas</button>';
 			html += '</div>';
 			html += '<small class="text-muted">' + data[i].precio_producto + "€" + '</small>';
 			html += '</div>';
@@ -32,35 +32,38 @@ $(document).ready(function () {
 			$("#productoModal .modal-title").text("Datuak kargatzen");
 			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
 			$('#productoModal').modal('show');
+
+			var title = data[id].nombre_producto;
+			var src =  data[id].imagen;
+			var descripcion = data[id].descripcion;
+			var precio = data[id].precio_producto;
+
+			console.log(title);
+			console.log(src);
+			console.log(descripcion);
+			console.log(precio);
+
+			printModal(title, src, descripcion, precio);
 		});
+
+		function printModal(title, src, descripcion, precio){
+
+			htmltitulo= '';
+			htmlbody = '';
+
+			htmltitulo += '<p>'+title+'</p>';
+			htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
+			htmlbody += '<p>'+descripcion+'</p>';
+			htmlbody += '<p>'+precio+'</p>';
+			
+			$('#productoModal .modal-title').html(htmltitulo);
+			$('#productoModal .modal-body').html(htmlbody);
+			$('#productoModal').modal('show');
+		}
 	});
 
 	getCategorias();
 
-	/*<ul class="navbar-nav mr-auto">
-				   <li class="nav-item active"><a class="nav-link" href="#">Todos<span
-						   class="sr-only">(current)</span></a></li>
-				   <li class="nav-item"><a class="nav-link" href="#">Mangas</a></li>
-
-
-				   <li class="nav-item dropdown"><a
-					   class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					   role="button" data-toggle="dropdown" aria-haspopup="true"
-					   aria-expanded="false"> Comics </a>
-					   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						   <a class="dropdown-item" href="#">Europeo</a> <a
-							   class="dropdown-item" href="#">Superheroes</a>
-						   <div class="dropdown-divider"></div>
-
-						   <a class="dropdown-item" href="#">Ofertas</a>
-
-					   </div></li>
-
-
-			   </ul>
-			   <form class="form-inline my-2 my-lg-0">
-				   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Carrito</button>
-			   </form> */
 });
 var htmlzatia = '';
 function getCategorias() {

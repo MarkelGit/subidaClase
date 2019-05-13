@@ -33,12 +33,12 @@ public class ProductoModel extends ProductoClass{
 		{ 
 			ProductoModel newC = new ProductoModel();
 			newC.setIdProducto(Integer.parseInt(rs.getString("id_producto")));
-			newC.setIdCategoria(Integer.parseInt(rs.getString("id_categoria")));
 			newC.setNombre_producto(rs.getString("nombre_producto"));
 			newC.setPrecio_producto(Double.parseDouble(rs.getString("precio_producto")));
 			newC.setDescripcion(rs.getString("descripcion"));
 			newC.setStock(Integer.parseInt(rs.getString("stock")));
 			newC.setImagen(rs.getString("imagen"));
+			newC.setIdSubcategoria(Integer.parseInt(rs.getString("id_subcategoria")));
 			this.list.add(newC);
 		}
 		this.con.close();
