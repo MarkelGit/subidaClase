@@ -1,8 +1,4 @@
 $(document).ready(function () {
-
-	
-		
-	
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
 		console.log(data);
 		var html = '';
@@ -85,10 +81,6 @@ function getCategorias() {
 	
 }
 
-
-
-
-
 function getProductosById(id) {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
 		console.log(data);
@@ -126,7 +118,3 @@ function getProductosById(id) {
 			$('#productoModal').modal('show');
 		});
 	});
-
-
-
-}
