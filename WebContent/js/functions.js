@@ -90,12 +90,11 @@ function getCategorias() {
 
 
 function getProductosById(id) {
-	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
+	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
 		console.log(data);
 		var html = '';
 
 		for (i in data) {
-			if (data[i].idSubcategoria == id){
 			html += '<div class="col-md-4">';
 			html += '<div class="card mb-4 shadow-sm">';
 			html += '<img src="' + data[i].imagen + '">';
@@ -113,7 +112,7 @@ function getProductosById(id) {
 			html += '</div>';
 			html += '</div>';
 			html += '</div>';
-			}
+			
 		}
 		$('.row').html(html);
 
