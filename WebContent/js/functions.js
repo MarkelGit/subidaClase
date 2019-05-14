@@ -14,7 +14,7 @@ $(document).ready(function () {
 			html += '</div>'
 			html += '<div class="d-flex justify-content-between align-items-center">';
 			html += '<div class="btn-group">';
-			html += '<button type="button" class="btn btn-success modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + i + '">Ver mas</button>';
+			html += '<button type="button" class="btn btn-success modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
 			html += '</div>';
 			html += '<small class="text-muted">' + data[i].precio_producto + "€" + '</small>';
 			html += '</div>';
@@ -32,36 +32,9 @@ $(document).ready(function () {
 			$("#productoModal .modal-title").text("Datuak kargatzen");
 			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
 			$('#productoModal').modal('show');
-
-			var title = data[id].nombre_producto;
-			var src =  data[id].imagen;
-			var descripcion = data[id].descripcion;
-			var precio = data[id].precio_producto;
-
-			console.log(title);
-			console.log(src);
-			console.log(descripcion);
-			console.log(precio);
-
-			printModal(title, src, descripcion, precio);
 		});
-
-		function printModal(title, src, descripcion, precio){
-
-			htmltitulo= '';
-			htmlbody = '';
-
-			htmltitulo += '<p>'+title+'</p>';
-			htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
-			htmlbody += '<p>'+descripcion+'</p>';
-			htmlbody += '<p>'+precio+'</p>';
-			
-			$('#productoModal .modal-title').html(htmltitulo);
-			$('#productoModal .modal-body').html(htmlbody);
-			$('#productoModal').modal('show');
-		}
 	});
-  
+
 	getCategorias();
 });
 
@@ -109,12 +82,11 @@ function getCategorias() {
 }
 
 function getProductosById(id) {
-	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
+	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
 		console.log(data);
 		var html = '';
 
 		for (i in data) {
-			if (data[i].idSubcategoria == id){
 			html += '<div class="col-md-4">';
 			html += '<div class="card mb-4 shadow-sm">';
 			html += '<img src="' + data[i].imagen + '">';
@@ -132,7 +104,7 @@ function getProductosById(id) {
 			html += '</div>';
 			html += '</div>';
 			html += '</div>';
-			}
+			
 		}
 		$('.row').html(html);
 
@@ -146,7 +118,3 @@ function getProductosById(id) {
 			$('#productoModal').modal('show');
 		});
 	});
-
-
-
-}

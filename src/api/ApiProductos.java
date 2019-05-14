@@ -35,9 +35,18 @@ public class ApiProductos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ProductoModel productoModelo =new ProductoModel();
-		
+		int idSubcategoria=-1;
+		if (request.getParameter("idSubcategoria")!=null) {
+		idSubcategoria=Integer.parseInt(request.getParameter("idSubcategoria"));
+		}
 		try {
+			if (idSubcategoria>0){
+				productoModelo.loadData(idSubcategoria);
+			}
+			else {
 			productoModelo.loadData();
+			}
+			
 			String jsonString = JSONStringer.valueToString(productoModelo.getList());
 			
 			PrintWriter out = response.getWriter();
