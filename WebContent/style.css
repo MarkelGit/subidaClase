@@ -1,10 +1,9 @@
   body {
-    margin: 0;
     box-sizing: border-box;
-    background-color: #dc3545!important;
+    background-color: #970e1c!important;
   }
 
-  header{
+  header {
     position: sticky;
     top: 0;
     z-index: 20;
@@ -15,8 +14,7 @@
   .container {
     background-color: whitesmoke;
     padding: 20px;
-    padding-bottom: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 4rem;
   }
 
   /* CUSTOMIZE THE CAROUSEL
@@ -24,6 +22,7 @@
 
   /* Carousel base class */
   .carousel {
+    margin-top: 0;
     margin-bottom: 4rem;
   }
   /* Since positioning the image, we need to help out the caption */
@@ -32,7 +31,7 @@
     z-index: 10;
   }
 
-  .carousel-caption > h5, p{
+  .carousel-caption > h5, p {
     color: rgb(151, 151, 151);
   }
   
@@ -51,24 +50,63 @@
   /* CUSTOMIZE THE CARDS
   -------------------------------------------------- */
 
-  .card > img{
+  .col-md-4 {
+    min-height: 625px;
+    max-height: 650px;
+    margin-top: 5px;
+  }
+
+  .title {
+    overflow: hidden;
+    height: 48px;
+    margin-bottom: 10px;
+  }
+
+  .card-body > .title> h5 {
+    text-align: initial; 
+    text-overflow: ellipsis;
+    
+  }
+
+  .card > img {
     margin: auto;
     width: 200px;
     height: 300px;
   }
-  .card-body >.paragraph> p{
-    text-align: justify;
-    text-overflow: ellipsis;
-    max-height: 190px;
-  }
-  .paragraph{
+
+  .paragraph {
     overflow: hidden;
     margin-bottom: 20px;
-    max-height: 190px;
+    height: 190px;
+  }
+
+  .card-body > .paragraph> p {
+    text-align: justify;
+    text-overflow: ellipsis;
   }
 
   /* CUSTOMIZE THE MODAL
   -------------------------------------------------- */
-  #productoModal{
+  #productoModal {
     display: none;
+  }
+
+  .imagen {
+    float: left; 
+    margin: 10px;
+  }
+  
+  .imagen > img {
+    height: 400px;
+    width: 300px;
+  }
+
+  .descripcion {
+    margin: 15px;
+    text-align: justify;
+  }
+
+  .precio {
+    float: right;
+    margin: 15px;
   }

@@ -41,7 +41,7 @@ public class ApiProductos extends HttpServlet {
 		idSubcategoria=Integer.parseInt(request.getParameter("idSubcategoria"));
 		}
 		if (request.getParameter("idProducto")!=null) {
-		idProducto=Integer.parseInt("idProducto");
+		idProducto=Integer.parseInt(request.getParameter("idProducto"));
 		}
 		try {
 			if (idSubcategoria!=-1){
