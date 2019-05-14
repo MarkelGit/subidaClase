@@ -27,7 +27,7 @@ public class ProductoModel extends ProductoClass{
 		this.createConnection();
 		
 		Statement st = this.con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM producto");
+		ResultSet rs = st.executeQuery("CALL allProducts");
 		
 		while (rs.next()) // reads the table line by line
 		{ 
@@ -49,7 +49,7 @@ public class ProductoModel extends ProductoClass{
 		this.createConnection();
 		
 		Statement st = this.con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM producto where id_subcategoria="+id);
+		ResultSet rs = st.executeQuery("CALL productosByIdSubcategoria("+id+")");
 		
 		while (rs.next()) // reads the table line by line
 		{ 
