@@ -32,13 +32,13 @@ public class ProductoModel extends ProductoClass{
 		while (rs.next()) // reads the table line by line
 		{ 
 			ProductoModel newC = new ProductoModel();
-			newC.setIdProducto(Integer.parseInt(rs.getString("id_producto")));
+			newC.setIdProducto(rs.getInt("id_producto"));
+			newC.setIdSubcategoria(rs.getInt("id_subcategoria"));
 			newC.setNombre_producto(rs.getString("nombre_producto"));
-			newC.setPrecio_producto(Double.parseDouble(rs.getString("precio_producto")));
+			newC.setPrecio_producto(rs.getDouble("precio_producto"));
 			newC.setDescripcion(rs.getString("descripcion"));
-			newC.setStock(Integer.parseInt(rs.getString("stock")));
+			newC.setStock(rs.getInt("stock"));
 			newC.setImagen(rs.getString("imagen"));
-			newC.setIdSubcategoria(Integer.parseInt(rs.getString("id_subcategoria")));
 			this.list.add(newC);
 		}
 		this.con.close();

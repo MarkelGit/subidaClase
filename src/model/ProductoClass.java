@@ -3,12 +3,12 @@ package model;
 public class ProductoClass extends Connect{
 	
 	protected int idProducto;
+	protected int idSubcategoria;
 	protected String nombre_producto;
 	protected double precio_producto;
 	protected String descripcion;
 	protected int stock;
 	protected String imagen;
-	protected int idSubcategoria;
 	
 	public ProductoClass() {
 		super();
@@ -17,6 +17,14 @@ public class ProductoClass extends Connect{
 
 	public int getIdProducto() {
 		return idProducto;
+	}
+
+	public int getIdSubcategoria() {
+		return idSubcategoria;
+	}
+
+	public void setIdSubcategoria(int idCategoria) {
+		this.idSubcategoria = idCategoria;
 	}
 
 	public void setIdProducto(int idProducto) {
@@ -61,14 +69,6 @@ public class ProductoClass extends Connect{
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
-	
-	public int getIdSubcategoria() {
-		return idSubcategoria;
-	}
-
-	public void setIdSubcategoria(int idSubcategoria) {
-		this.idSubcategoria = idSubcategoria;
 	}
 
 }
