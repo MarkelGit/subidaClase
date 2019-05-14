@@ -36,12 +36,19 @@ public class ApiProductos extends HttpServlet {
 
 		ProductoModel productoModelo =new ProductoModel();
 		int idSubcategoria=-1;
+		int idProducto=-1;
 		if (request.getParameter("idSubcategoria")!=null) {
 		idSubcategoria=Integer.parseInt(request.getParameter("idSubcategoria"));
 		}
+		if (request.getParameter("idProducto")!=null) {
+		idProducto=Integer.parseInt("idProducto");
+		}
 		try {
-			if (idSubcategoria>0){
+			if (idSubcategoria!=1){
 				productoModelo.loadData(idSubcategoria);
+			}
+			else if (idProducto!=-1) {
+				productoModelo.loadProductoById(idProducto);
 			}
 			else {
 			productoModelo.loadData();

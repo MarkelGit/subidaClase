@@ -104,8 +104,8 @@ function getProductosById(id) {
 			html += '</div>';
 			html += '</div>';
 			html += '</div>';
-			
 		}
+		
 		$('.row').html(html);
 
 		$('.modalButton').on("click", function () {
@@ -118,3 +118,4 @@ function getProductosById(id) {
 			$('#productoModal').modal('show');
 		});
 	});
+}
