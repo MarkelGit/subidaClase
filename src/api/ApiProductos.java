@@ -44,7 +44,7 @@ public class ApiProductos extends HttpServlet {
 		idProducto=Integer.parseInt("idProducto");
 		}
 		try {
-			if (idSubcategoria!=1){
+			if (idSubcategoria!=-1){
 				productoModelo.loadData(idSubcategoria);
 			}
 			else if (idProducto!=-1) {
