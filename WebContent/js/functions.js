@@ -98,7 +98,7 @@ function getCategorias() {
 				
 				htmlzatia += linea;
 			}
-			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-info btn-outline-light my-2 my-sm-0" type="submit">Carrito</button> </form> ';
+			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Carrito</button></form>';
 			$('#navbarToggleExternalContent').html(htmlzatia);
 			$('.dropdown-item').on("click", function() {
 				var id=$(this).data("id");
