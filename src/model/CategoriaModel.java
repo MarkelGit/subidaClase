@@ -27,7 +27,7 @@ public class CategoriaModel extends CategoriaClass{
 		this.createConnection();
 		
 		Statement st = this.con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM categoria");
+		ResultSet rs = st.executeQuery(" CALL allCategorias ");
 		
 		while (rs.next()) // reads the table line by line
 		{ 

@@ -27,7 +27,7 @@ public class SubcategoriaModel extends SubcategoriaClass{
 		this.createConnection();
 		
 		Statement st = this.con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM subcategoria");
+		ResultSet rs = st.executeQuery("CALL allSubcategorias");
 		
 		while (rs.next()) // reads the table line by line
 		{ 
