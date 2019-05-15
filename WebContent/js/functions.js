@@ -127,18 +127,9 @@ function getCategorias() {
 			}
 			
 			htmlzatia += '</ul><div class="btn-group">';
-			htmlzatia += '<button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Carrito</button>';
+			htmlzatia += '<button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="carritoButton">Carrito</button>';
 			htmlzatia += '<div class="dropdown-menu dropdown-menu-right">';
 			htmlzatia += '<table class="carrito">';
-
-			for (i in carrito) {	
-				htmlzatia += '<tr>';
-				htmlzatia += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
-				htmlzatia += '<td class="titulo">'+carrito[i].nombre+'</td>';
-				htmlzatia += '<td class="cantidad">'+carrito[i].cantidad+'</td>';
-				htmlzatia += '<td class="precioTotal">'+carrito[i].precio*carrito[i].cantidad+"€"+'</td>';
-				htmlzatia += '</tr>';
-			}
 			htmlzatia += '</table>';
 			htmlzatia += '</div>';
 			htmlzatia += '</div>';
@@ -160,10 +151,23 @@ function getCategorias() {
 					getAllProductos();
 				}
 			});
+
+			$('#carritoButton').on("click", function(){
+				carrito = JSON.parse(localStorage.getItem('carrito')) || {};
+				var htmltable = '';
+
+				for (i in carrito) {	
+					htmltable += '<tr>';
+					htmltable += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
+					htmltable += '<td class="titulo">'+carrito[i].nombre+'</td>';
+					htmltable += '<td class="cantidad">'+carrito[i].cantidad+'</td>';
+					htmltable += '<td class="precioTotal">'+carrito[i].precio*carrito[i].cantidad+"€"+'</td>';
+					htmltable += '</tr>';
+				}
+				$('.carrito').html(htmltable);
+			});
 		});
-		
 	});
-	
 }
 
 function getProductosByIdSub(id) {
