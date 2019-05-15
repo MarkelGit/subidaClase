@@ -1,4 +1,8 @@
+var carrito
 $(document).ready(function () {
+
+	 carrito = JSON.parse(localStorage.getItem('carrito')) || {};
+
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
 		console.log(data);
 		var html = '';
@@ -38,8 +42,9 @@ $(document).ready(function () {
 			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
 				console.log(dataPro);
 			
-				htmltitulo= '';
+				htmltitulo = '';
 				htmlbody = '';
+				htmlfooter = '';
 
 				var title = dataPro[0].nombre_producto;
 				var src =  dataPro[0].imagen;
@@ -56,10 +61,30 @@ $(document).ready(function () {
 				htmlbody += '<div class="precio">';
 				htmlbody += '<h3>'+precio+ "€" +'</h3>';
 				htmlbody += '</div>';
+				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
 				
+				console.log(dataPro);
 				$('#productoModal .modal-title').html(htmltitulo);
 				$('#productoModal .modal-body').html(htmlbody);
+				$('#productoModal .modal-footer').html(htmlfooter);
 				$('#productoModal').modal('show');
+
+				$('.addCarrito').on("click", function () {
+					var producto = $(this).data();
+					console.log($(this).data());
+
+					console.log(carrito[producto.id]);
+					if (carrito[producto.id] === undefined) {
+						producto.cantidad = 1;
+						carrito[producto.id] = producto;
+						console.log(true);
+					}else {
+						carrito[producto.id].cantidad ++;
+						console.log(false);
+					}
+					
+					localStorage.setItem("carrito", JSON.stringify(carrito));
+				});
 			});
 		});
 	});
@@ -98,8 +123,26 @@ function getCategorias() {
 				
 				htmlzatia += linea;
 			}
-			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Carrito</button></form>';
+			
+			htmlzatia += '</ul><div class="btn-group">';
+			htmlzatia += '<button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Carrito</button>';
+			htmlzatia += '<div class="dropdown-menu dropdown-menu-right">';
+			htmlzatia += '<table class="carrito">';
+
+			for (i in carrito) {	
+				htmlzatia += '<tr>';
+				htmlzatia += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
+				htmlzatia += '<td class="titulo">'+carrito[i].nombre+'</td>';
+				htmlzatia += '<td class="cantidad">'+carrito[i].cantidad+'</td>';
+				htmlzatia += '<td class="precioTotal">'+carrito[i].precio*carrito[i].cantidad+"€"+'</td>';
+				htmlzatia += '</tr>';
+			}
+			htmlzatia += '</table>';
+			htmlzatia += '</div>';
+			htmlzatia += '</div>';
+
 			$('#navbarToggleExternalContent').html(htmlzatia);
+			
 			$('.dropdown-item').on("click", function() {
 				var id=$(this).data("id");
 				getProductosById(id);
