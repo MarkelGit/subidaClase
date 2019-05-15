@@ -1,3 +1,4 @@
+var rec ={};
 $(document).ready(function () {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
 		console.log(data);
@@ -70,7 +71,7 @@ $(document).ready(function () {
 var htmlzatia = '';
 function getCategorias() {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiCategorias", function (dataCat) {
-		console.log(dataCat);
+		
 		$.getJSON("http://localhost:8080/proyecto_final/ApiSubcategorias", function (dataSub) {
 			htmlzatia='<ul class="navbar-nav mr-auto">';
 			console.log(dataSub);
@@ -91,10 +92,10 @@ function getCategorias() {
 						linea += '<a class="dropdown-item" href="#" data-id="'+dataSub[y].idSubcategoria+'">' + dataSub[y].nombre_categoria + '</a>';
 					}
 				}
-				console.log(dropdown);
+			
 				if (dropdown == 1) {
 					linea += '<div class="dropdown-divider"></div>';
-					linea += '<a class="dropdown-item" href="#" data-id="0">Todo</a>';
+					linea += '<a class="dropdown-item" href="#" data-idcat="'+dataCat[i].idCategoria+'">Todo</a>';
 					linea += '</div></li>';
 				}
 				
@@ -103,10 +104,16 @@ function getCategorias() {
 			htmlzatia += '<form class="form-inline my-2 my-lg-0"></ul> <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Carrito</button></form>';
 			$('#navbarToggleExternalContent').html(htmlzatia);
 			$('.dropdown-item').on("click", function() {
+				rec=$(this);
 				var id=$(this).data("id");
-				if (id!=0) {
-				getProductosById(id);
+				var idcat=$(this).data("idcat");
+				if (id) {
+				getProductosByIdSub(id);
 				}
+				else if(idcat){
+				getProductosByIdCat(idcat);
+				}
+
 				else{
 					getAllProductos();
 				}
@@ -117,23 +124,25 @@ function getCategorias() {
 	
 }
 
-function getProductosById(id) {
+function getProductosByIdSub(id) {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
 		console.log(data);
 		var html = '';
 
 		for (i in data) {
-			html += '<div class="col-md-4">';
-			html += '<div class="card mb-4 shadow-sm">';
+			html += '<div class="col-md-4 col-sm-12">';
+			html += '<div class="card mb-4 card-sm-12 shadow-sm">';
 			html += '<img src="' + data[i].imagen + '">';
 			html += '<div class="card-body">';
+			html += '<div class="title">'
 			html += '<h5>' + data[i].nombre_producto + '</h5>';
+			html += '</div>'
 			html += '<div class="paragraph">'
 			html += '<p class="card-text">' + data[i].descripcion + '</p>';
 			html += '</div>'
 			html += '<div class="d-flex justify-content-between align-items-center">';
 			html += '<div class="btn-group">';
-			html += '<button type="button" class="btn btn-success modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
+			html += '<button type="button" class="btn btn-danger modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
 			html += '</div>';
 			html += '<small class="text-muted">' + data[i].precio_producto + "€" + '</small>';
 			html += '</div>';
@@ -183,12 +192,12 @@ function getProductosById(id) {
 	});
 }
 
-function getAllProductos() {
-$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
+function getProductosByIdCat(id) {
+	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idCategoria="+id, function (data) {
 		console.log(data);
 		var html = '';
 
-		for (let i = 0; i < 6; i++) {
+		for (i in data) {
 			html += '<div class="col-md-4 col-sm-12">';
 			html += '<div class="card mb-4 card-sm-12 shadow-sm">';
 			html += '<img src="' + data[i].imagen + '">';
@@ -209,6 +218,7 @@ $.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
 			html += '</div>';
 			html += '</div>';
 		}
+		
 		$('.row').html(html);
 
 		$('.modalButton').on("click", function () {

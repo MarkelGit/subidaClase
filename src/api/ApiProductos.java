@@ -37,11 +37,15 @@ public class ApiProductos extends HttpServlet {
 		ProductoModel productoModelo =new ProductoModel();
 		int idSubcategoria=-1;
 		int idProducto=-1;
+		int idCategoria=-1;
 		if (request.getParameter("idSubcategoria")!=null) {
 		idSubcategoria=Integer.parseInt(request.getParameter("idSubcategoria"));
 		}
 		if (request.getParameter("idProducto")!=null) {
 		idProducto=Integer.parseInt(request.getParameter("idProducto"));
+		}
+		if (request.getParameter("idCategoria")!=null) {
+		idCategoria=Integer.parseInt(request.getParameter("idCategoria"));
 		}
 		try {
 			if (idSubcategoria!=-1){
@@ -50,8 +54,11 @@ public class ApiProductos extends HttpServlet {
 			else if (idProducto!=-1) {
 				productoModelo.loadProductoById(idProducto);
 			}
+			else if (idCategoria!=-1) {
+				productoModelo.loadProductoByCategoria(idCategoria);
+			}
 			else {
-			productoModelo.loadData();
+				productoModelo.loadData();
 			}
 			
 			String jsonString = JSONStringer.valueToString(productoModelo.getList());
