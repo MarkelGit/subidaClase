@@ -1,13 +1,17 @@
-  body {
-    box-sizing: border-box;
-    background-color: #970e1c!important;
-  }
-
+  /* CUSTOMIZE THE HEADER
+  -------------------------------------------------- */
   header {
     position: absolute;
     width: 100%;
     top: 0;
     z-index: 20;
+  }
+
+  /* CUSTOMIZE THE BODY
+  -------------------------------------------------- */
+  body {
+    box-sizing: border-box;
+    background-color: #970e1c!important;
   }
   
   /* CUSTOMIZE THE CONTAINER
@@ -20,7 +24,6 @@
 
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
-
   /* Carousel base class */
   .carousel {
     margin-top: 0;
@@ -50,7 +53,6 @@
 
   /* CUSTOMIZE THE CARDS
   -------------------------------------------------- */
-
   .col-md-4 {
     min-height: 625px;
     max-height: 650px;
@@ -92,6 +94,10 @@
     display: none;
   }
 
+  .modal-header {
+    color: white;
+  }
+
   .imagen {
     float: left; 
     margin: 10px;
@@ -110,4 +116,16 @@
   .precio {
     float: right;
     margin: 15px;
+  }
+
+  /* CUSTOMIZE THE CARRITO
+  -------------------------------------------------- */
+  table {
+    table-layout: fixed;
+    width: 250px;
+  }
+  
+  td {
+    width: 100px;
+    text-align: center;
   }
