@@ -49,7 +49,7 @@ public class ApiProductos extends HttpServlet {
 		}
 		try {
 			if (idSubcategoria!=-1){
-				productoModelo.loadData(idSubcategoria);
+				productoModelo.loadProductoBySubcategoria(idSubcategoria);
 			}
 			else if (idProducto!=-1) {
 				productoModelo.loadProductoById(idProducto);

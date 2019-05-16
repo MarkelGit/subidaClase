@@ -43,7 +43,7 @@ public class ProductoModel extends ProductoClass{
 		}
 		this.con.close();
 	}
-	public void loadData(int id) throws SQLException 
+	public void loadProductoBySubcategoria(int id) throws SQLException 
 	{
 		
 		this.createConnection();
