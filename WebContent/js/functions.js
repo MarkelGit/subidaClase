@@ -1,6 +1,5 @@
 var carrito
 $(document).ready(function () {
-
 	/*localStorage.clear();*/
 	carrito = JSON.parse(localStorage.getItem('carrito')) || {};
 
@@ -320,7 +319,7 @@ function getInicio() {
 				$('#productoModal .modal-title').html(htmltitulo);
 				$('#productoModal .modal-body').html(htmlbody);
 				$('#productoModal .modal-footer').html(htmlfooter);
-				$('#productoModal').modal('show');
+				$('#productoModal').slideDown();
 
 				$('.addCarrito').on("click", function () {
 					var producto = $(this).data();
@@ -338,6 +337,8 @@ function getInicio() {
 					
 					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
 					localStorage.setItem("carrito", JSON.stringify(carrito));
+
+					/*$('#productoModal').slideUp("hide");*/
 				});
 			});
 		});
