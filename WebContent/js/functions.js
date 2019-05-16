@@ -1,11 +1,11 @@
 var carrito
 $(document).ready(function () {
 
-	 carrito = JSON.parse(localStorage.getItem('carrito')) || {};
+	/*localStorage.clear();*/
+	carrito = JSON.parse(localStorage.getItem('carrito')) || {};
 
 	getInicio();
 });
-
 
 var htmlzatia = '';
 function getCategorias() {
@@ -52,7 +52,6 @@ function getCategorias() {
 			$('#navbarToggleExternalContent').html(htmlzatia);
 			
 			$('.dropdown-item').on("click", function() {
-				rec=$(this);
 				var id=$(this).data("id");
 				var idcat=$(this).data("idcat");
 				if (id) {
@@ -75,18 +74,54 @@ function getCategorias() {
 				var htmltable = '';
 
 				for (i in carrito) {	
-					htmltable += '<tr>';
+					htmltable += '<tr class="linea-carrito">';
 					htmltable += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
 					htmltable += '<td class="titulo">'+carrito[i].nombre+'</td>';
-					htmltable += '<td class="cantidad">'+carrito[i].cantidad+'</td>';
+					htmltable += '<td class="cantidad">';
+					htmltable += '<div class="aumentar" onclick="addCantidad('+i+')"> <img src="iconos/aumentar.png">';
+					htmltable += '</div>';
+					htmltable += '<div class="cantidad-flexible">'+ carrito[i].cantidad;
+					htmltable += '</div>';
+					htmltable += '<div class="disminuir" onclick="removeCantidad('+i+')"> <img src="iconos/disminuir.png">';
+					htmltable += '</div>';
+					htmltable += '</td>';
 					htmltable += '<td class="precioTotal">'+carrito[i].precio*carrito[i].cantidad+"€"+'</td>';
+					htmltable += '<td class="eliminar">';
+					htmltable += '<div class="borrar" onclick="removeItem('+i+')"> <img src="iconos/eliminar.png">';
+					htmltable += '</div>';
+					htmltable += '</td>';
 					htmltable += '</tr>';
 				}
+
 				$('.carrito').html(htmltable);
+			});
+			
+			$('.borrar').mouseover(function(){
+				$('.linea-carrito').css("background-color", "red");
 			});
 		});
 	});
 }
+
+/*function addCantidad(pos){
+	localStorage.setItem("carrito[pos].cantidad", carrito[pos].cantidad++);
+};*/
+
+/*function removeCantidad(pos){
+	localStorage.removeItem("carrito");
+};*/
+
+/*function removeItem(pos){
+	console.log(pos);
+	$('.linea-carrito').slideUp();
+
+	for (i in carrito) {
+		if (i == pos) {
+			localStorage.setItem('carrito'+pos+'', JSON.stringify(carrito[pos]));
+			//localStorage.removeItem("carrito["+pos+"]");
+		}
+	}
+};*/
 
 function getProductosByIdSub(id) {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
@@ -120,7 +155,6 @@ function getProductosByIdSub(id) {
 		$('.modalButton').on("click", function () {
 			var id = $(this).data("id");
 			console.log(id);
-			//llamada a /apiProducto?id=
 
 			$("#productoModal .modal-title").text("Datuak kargatzen");
 			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
@@ -188,7 +222,6 @@ function getProductosByIdCat(id) {
 		$('.modalButton').on("click", function () {
 			var id = $(this).data("id");
 			console.log(id);
-			//llamada a /apiProducto?id=
 
 			$("#productoModal .modal-title").text("Datuak kargatzen");
 			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
@@ -254,7 +287,6 @@ function getInicio() {
 		$('.modalButton').on("click", function () {
 			var id = $(this).data("id");
 			console.log(id);
-			//llamada a /apiProducto?id=
 
 			$("#productoModal .modal-title").text("Datuak kargatzen");
 			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
@@ -304,6 +336,7 @@ function getInicio() {
 						console.log(false);
 					}
 					
+					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
 					localStorage.setItem("carrito", JSON.stringify(carrito));
 				});
 			});

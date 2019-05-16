@@ -123,9 +123,24 @@
   table {
     table-layout: fixed;
     width: 250px;
+    justify-content: space-between;
   }
   
   td {
     width: 100px;
     text-align: center;
+  }
+
+  .cantidad {
+    width: 50px;
+    padding-left: 25px;
+  }
+
+  .eliminar {
+    width: 50px;
+    padding-right: 25px;
+  }
+
+  .borrar:hover {
+    cursor: pointer;
   }
