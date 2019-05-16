@@ -3,94 +3,9 @@ $(document).ready(function () {
 
 	 carrito = JSON.parse(localStorage.getItem('carrito')) || {};
 
-	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
-		console.log(data);
-		var html = '';
-
-		for (let i = 0; i < 6; i++) {
-			html += '<div class="col-md-4 col-sm-12">';
-			html += '<div class="card mb-4 card-sm-12 shadow-sm">';
-			html += '<img src="' + data[i].imagen + '">';
-			html += '<div class="card-body">';
-			html += '<div class="title">'
-			html += '<h5>' + data[i].nombre_producto + '</h5>';
-			html += '</div>'
-			html += '<div class="paragraph">'
-			html += '<p class="card-text">' + data[i].descripcion + '</p>';
-			html += '</div>'
-			html += '<div class="d-flex justify-content-between align-items-center">';
-			html += '<div class="btn-group">';
-			html += '<button type="button" class="btn btn-danger modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
-			html += '</div>';
-			html += '<small class="text-muted">' + data[i].precio_producto + "€" + '</small>';
-			html += '</div>';
-			html += '</div>';
-			html += '</div>';
-			html += '</div>';
-		}
-		$('.row').html(html);
-
-		$('.modalButton').on("click", function () {
-			var id = $(this).data("id");
-			console.log(id);
-			//llamada a /apiProducto?id=
-
-			$("#productoModal .modal-title").text("Datuak kargatzen");
-			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
-			$('#productoModal').modal('show');
-
-			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
-				console.log(dataPro);
-			
-				htmltitulo = '';
-				htmlbody = '';
-				htmlfooter = '';
-
-				var title = dataPro[0].nombre_producto;
-				var src =  dataPro[0].imagen;
-				var descripcion = dataPro[0].descripcion;
-				var precio = dataPro[0].precio_producto;
-
-				htmltitulo += '<h2>'+title+'</h2>';
-				htmlbody += '<div class="imagen">';
-				htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
-				htmlbody += '</div>';
-				htmlbody += '<div class="descripcion">';
-				htmlbody += '<p>'+descripcion+'</p>';
-				htmlbody += '</div>';
-				htmlbody += '<div class="precio">';
-				htmlbody += '<h3>'+precio+ "€" +'</h3>';
-				htmlbody += '</div>';
-				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
-				
-				console.log(dataPro);
-				$('#productoModal .modal-title').html(htmltitulo);
-				$('#productoModal .modal-body').html(htmlbody);
-				$('#productoModal .modal-footer').html(htmlfooter);
-				$('#productoModal').modal('show');
-
-				$('.addCarrito').on("click", function () {
-					var producto = $(this).data();
-					console.log($(this).data());
-
-					console.log(carrito[producto.id]);
-					if (carrito[producto.id] === undefined) {
-						producto.cantidad = 1;
-						carrito[producto.id] = producto;
-						console.log(true);
-					}else {
-						carrito[producto.id].cantidad ++;
-						console.log(false);
-					}
-					
-					localStorage.setItem("carrito", JSON.stringify(carrito));
-				});
-			});
-		});
-	});
-
-	getCategorias();
+	getInicio();
 });
+
 
 var htmlzatia = '';
 function getCategorias() {
@@ -150,6 +65,9 @@ function getCategorias() {
 				else{
 					getAllProductos();
 				}
+			});
+			$('#logo').on("click", function(){
+				getInicio();
 			});
 
 			$('#carritoButton').on("click", function(){
@@ -304,4 +222,93 @@ function getProductosByIdCat(id) {
 			});
 		});
 	});
+}
+function getInicio() {
+	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
+		console.log(data);
+		var html = '';
+
+		for (let i = 0; i < 6; i++) {
+			html += '<div class="col-md-4 col-sm-12">';
+			html += '<div class="card mb-4 card-sm-12 shadow-sm">';
+			html += '<img src="' + data[i].imagen + '">';
+			html += '<div class="card-body">';
+			html += '<div class="title">'
+			html += '<h5>' + data[i].nombre_producto + '</h5>';
+			html += '</div>'
+			html += '<div class="paragraph">'
+			html += '<p class="card-text">' + data[i].descripcion + '</p>';
+			html += '</div>'
+			html += '<div class="d-flex justify-content-between align-items-center">';
+			html += '<div class="btn-group">';
+			html += '<button type="button" class="btn btn-danger modalButton" data-toggle="modal" data-target="#productoModal" data-id="' + data[i].idProducto + '">Ver mas</button>';
+			html += '</div>';
+			html += '<small class="text-muted">' + data[i].precio_producto + "€" + '</small>';
+			html += '</div>';
+			html += '</div>';
+			html += '</div>';
+			html += '</div>';
+		}
+		$('.row').html(html);
+
+		$('.modalButton').on("click", function () {
+			var id = $(this).data("id");
+			console.log(id);
+			//llamada a /apiProducto?id=
+
+			$("#productoModal .modal-title").text("Datuak kargatzen");
+			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
+			$('#productoModal').modal('show');
+
+			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
+				console.log(dataPro);
+			
+				htmltitulo = '';
+				htmlbody = '';
+				htmlfooter = '';
+
+				var title = dataPro[0].nombre_producto;
+				var src =  dataPro[0].imagen;
+				var descripcion = dataPro[0].descripcion;
+				var precio = dataPro[0].precio_producto;
+
+				htmltitulo += '<h2>'+title+'</h2>';
+				htmlbody += '<div class="imagen">';
+				htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
+				htmlbody += '</div>';
+				htmlbody += '<div class="descripcion">';
+				htmlbody += '<p>'+descripcion+'</p>';
+				htmlbody += '</div>';
+				htmlbody += '<div class="precio">';
+				htmlbody += '<h3>'+precio+ "€" +'</h3>';
+				htmlbody += '</div>';
+				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
+				
+				console.log(dataPro);
+				$('#productoModal .modal-title').html(htmltitulo);
+				$('#productoModal .modal-body').html(htmlbody);
+				$('#productoModal .modal-footer').html(htmlfooter);
+				$('#productoModal').modal('show');
+
+				$('.addCarrito').on("click", function () {
+					var producto = $(this).data();
+					console.log($(this).data());
+
+					console.log(carrito[producto.id]);
+					if (carrito[producto.id] === undefined) {
+						producto.cantidad = 1;
+						carrito[producto.id] = producto;
+						console.log(true);
+					}else {
+						carrito[producto.id].cantidad ++;
+						console.log(false);
+					}
+					
+					localStorage.setItem("carrito", JSON.stringify(carrito));
+				});
+			});
+		});
+	});
+
+	getCategorias();
 }
