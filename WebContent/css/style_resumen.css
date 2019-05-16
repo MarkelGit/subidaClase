@@ -1,0 +1,27 @@
+body{
+    background-color: #970e1c!important;
+    padding: 30px;
+}
+.container{
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+}
+td>img{
+    width:150px;
+    height:200px;
+}
+#tablaProductos>td{
+    padding: 30px;
+    text-align: left;
+}
+.containerProductos{
+    display: flex;
+    justify-content: center;
+}
+#tablaProductos{
+    width: 80%;
+}
+.titulos>td>h3{
+    font-weight: bold;
+}
