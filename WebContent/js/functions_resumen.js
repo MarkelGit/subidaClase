@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $.getJSON("../producto.json", function (data) {
         var htmlzatia='';
+        if (data.length>0){
         htmlzatia+='<tr class="titulos">';
         htmlzatia+='<td></td>';
         htmlzatia+='<td><h3>TITULO</h3></td>';
@@ -17,7 +18,14 @@ $(document).ready(function () {
             
         }
         $("#tablaProductos").html(htmlzatia);
-    
+        $(".boton").html('<button type="button" id=siguiente class="btn btn-danger">Siguiente</button>')
+        }
+        else {
+        htmlzatia+='<h1 class="titulo">No se ha encontrado ningun producto en la cesta</h1>';
+        htmlzatia+='<h3 class="subtitulo">vuelva al inicio clickando <a href="index.html">aquí</a> y añada productos para poder visualizarlos en el carro</h3>';
+        htmlzatia+='<img src="/emptycart.png">';
+        $(".container").html(htmlzatia);
+        }
     });
 
 });

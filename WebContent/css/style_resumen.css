@@ -25,3 +25,22 @@ td>img{
 .titulos>td>h3{
     font-weight: bold;
 }
+.subtitulo{
+    color: #707070;
+}
+.subtitulo>a{
+color: #707070;
+font-weight: bolder;
+}
+
+.container{
+    text-align: center;
+}
+.container>img{
+    width:200px;
+    height: 200px;
+    padding: 20px;
+}
+.boton{
+    text-align: right;
+}
