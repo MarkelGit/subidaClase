@@ -23,7 +23,7 @@ $(document).ready(function () {
         else {
         htmlzatia+='<h1 class="titulo">No se ha encontrado ningun producto en la cesta</h1>';
         htmlzatia+='<h3 class="subtitulo">vuelva al inicio clickando <a href="index.html">aquí</a> y añada productos para poder visualizarlos en el carro</h3>';
-        htmlzatia+='<img src="/emptycart.png">';
+        htmlzatia+='<img src="/imagenes/emptycart.png">';
         $(".container").html(htmlzatia);
         }
     });
