@@ -1,6 +1,7 @@
 var carrito
 $(document).ready(function () {
 	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 	getInicio();
 });
 
@@ -337,7 +338,7 @@ function getInicio() {
 				$('#productoModal .modal-title').html(htmltitulo);
 				$('#productoModal .modal-body').html(htmlbody);
 				$('#productoModal .modal-footer').html(htmlfooter);
-				$('#productoModal').modal('show');
+				$('#productoModal').slideDown();
 
 				$('.addCarrito').on("click", function () {
 					var existe = 0;
