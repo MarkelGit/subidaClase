@@ -384,3 +384,4 @@ function getInicio() {
 
 	getCategorias();
 }
+
