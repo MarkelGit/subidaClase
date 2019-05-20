@@ -1,9 +1,36 @@
-body{
+body {
     background-color: #970e1c!important;
 }
 
-.container{
+.container {
     background-color: white;
     width: 300px;
     padding: 20px;
+    margin: 4%;
+}
+
+.creditCardForm {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+.payment {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
+#pay-now {
+    margin-top: 0!important;  
+}
+
+#contra_reembolso {
+    display: none;
+}
+
+#confirm-purchase_cr {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 150px;
+    color: white;
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2019 a las 08:59:46
+-- Tiempo de generación: 20-05-2019 a las 14:33:45
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.1.21
 
@@ -76,9 +76,9 @@ CREATE TABLE `factura` (
   `nombre_cliente` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `apellido_cliente` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `direccion_cliente` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `numero_tarjeta` varchar(18) COLLATE utf8_unicode_ci NOT NULL,
-  `caducidad_tarjeta` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `cvc_tarjeta` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `numero_tarjeta` varchar(18) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `caducidad_tarjeta` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cvc_tarjeta` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fecha_compra` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `precio_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
