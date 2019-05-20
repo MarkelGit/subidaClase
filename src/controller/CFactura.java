@@ -33,9 +33,20 @@ public class CFactura extends HttpServlet {
 		String nombre = request.getParameter("inNombre");
 		String apellido = request.getParameter("inApellido");
 		String direccion = request.getParameter("inDireccion");
-		int cvv = Integer.parseInt(request.getParameter("inCvv"));
+		String propietario = request.getParameter("inOwner");
+		String cvc = request.getParameter("inCvv");
+		String numero_tarjeta = request.getParameter("inCardNumber");
+		String caducidad_tarjeta = request.getParameter("inCardNumber");
+		String mes = request.getParameter("inMes");
+		int year = Integer.parseInt(request.getParameter("inYear"));
 		
 		FacturaModel newFactura = new FacturaModel();
+		
+//		myConflict.setIdConflict(idSelected);
+//		myConflict.setSince(since);
+//		myConflict.setDeaths(deaths);
+//		myConflict.setDisplacedPeople(displacedPeople);
+//		myConflict.update();
 		
 		request.setAttribute("newFactura", newFactura);
 		request.getRequestDispatcher("admin.jsp").forward(request, response);
