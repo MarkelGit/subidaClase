@@ -1,7 +1,6 @@
 var carrito
 $(document).ready(function () {
-	/*localStorage.clear();*/
-	carrito = JSON.parse(localStorage.getItem('carrito')) || {};
+	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 	getInicio();
 });
@@ -43,7 +42,7 @@ function getCategorias() {
 			htmlzatia += '</ul><div class="btn-group">';
 			htmlzatia += '<button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="carritoButton">Carrito</button>';
 			htmlzatia += '<div class="dropdown-menu dropdown-menu-right">';
-			htmlzatia += '<table class="carrito">';
+			htmlzatia += '<table class="carrito" onclick="event.stopPropagation();">';
 			htmlzatia += '</table>';
 			htmlzatia += '</div>';
 			htmlzatia += '</div>';
@@ -68,59 +67,78 @@ function getCategorias() {
 				getInicio();
 			});
 
-			$('#carritoButton').on("click", function(){
-				carrito = JSON.parse(localStorage.getItem('carrito')) || {};
-				var htmltable = '';
-
-				for (i in carrito) {	
-					htmltable += '<tr class="linea-carrito">';
-					htmltable += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
-					htmltable += '<td class="titulo">'+carrito[i].nombre+'</td>';
-					htmltable += '<td class="cantidad">';
-					htmltable += '<div class="aumentar" onclick="addCantidad('+i+')"> <img src="iconos/aumentar.png">';
-					htmltable += '</div>';
-					htmltable += '<div class="cantidad-flexible">'+ carrito[i].cantidad;
-					htmltable += '</div>';
-					htmltable += '<div class="disminuir" onclick="removeCantidad('+i+')"> <img src="iconos/disminuir.png">';
-					htmltable += '</div>';
-					htmltable += '</td>';
-					htmltable += '<td class="precioTotal">'+carrito[i].precio*carrito[i].cantidad+"€"+'</td>';
-					htmltable += '<td class="eliminar">';
-					htmltable += '<div class="borrar" onclick="removeItem('+i+')"> <img src="iconos/eliminar.png">';
-					htmltable += '</div>';
-					htmltable += '</td>';
-					htmltable += '</tr>';
-				}
-
-				$('.carrito').html(htmltable);
-			});
-			
-			$('.borrar').mouseover(function(){
-				$('.linea-carrito').css("background-color", "red");
-			});
+			$('#carritoButton').on("click", refresh);
 		});
 	});
 }
 
-/*function addCantidad(pos){
-	localStorage.setItem("carrito[pos].cantidad", carrito[pos].cantidad++);
-};*/
+function refresh(){
+	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	var htmltable = '';
+	var precioCantidad = '';
+	var precioTotal = parseFloat(0);
 
-/*function removeCantidad(pos){
-	localStorage.removeItem("carrito");
-};*/
+	$('.dropdown-toggle').on("blur", function() {
+		$('.btn-group').addClass("show");
+	});
 
-/*function removeItem(pos){
+	for (i in carrito) {	
+		precioCantidad = parseFloat(carrito[i].precio*carrito[i].cantidad);
+
+		htmltable += '<tr class="linea-carrito">';
+		htmltable += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
+		htmltable += '<td class="titulo">'+carrito[i].nombre+'</td>';
+		htmltable += '<td class="cantidad">';
+		htmltable += '<div class="aumentar" onclick="addCantidad('+i+')"> <img src="iconos/aumentar.png">';
+		htmltable += '</div>';
+		htmltable += '<div class="cantidad-flexible">'+carrito[i].cantidad;
+		htmltable += '</div>';
+		htmltable += '<div class="disminuir" onclick="removeCantidad('+i+')"> <img src="iconos/disminuir.png">';
+		htmltable += '</div>';
+		htmltable += '</td>';
+		htmltable += '<td class="precioCantidad">'+precioCantidad+"€"+'</td>';
+		htmltable += '<td class="eliminar">';
+		htmltable += '<div class="borrar" onclick="removeItem('+i+')"> <img src="iconos/eliminar.png">';
+		htmltable += '</div>';
+		htmltable += '</td>';
+		htmltable += '</tr>';
+
+		precioTotal = parseFloat(precioTotal+precioCantidad);
+	}
+		
+		htmltable += '<tr>';
+		htmltable += '<td class="pedido" colspan="2">';
+		htmltable += '<a href="/resumen.html" type="button" class="btn btn-danger pedidoButton">Realizar pedido</a>';
+		htmltable += '</td>';
+		htmltable += '<td class="precioTotal" colspan="2"><b>Total: </b>'+precioTotal+"€"+'</td>';
+		htmltable += '</tr>';
+
+	$('.carrito').html(htmltable);
+}
+
+function removeItem(pos){
 	console.log(pos);
-	$('.linea-carrito').slideUp();
 
 	for (i in carrito) {
 		if (i == pos) {
-			localStorage.setItem('carrito'+pos+'', JSON.stringify(carrito[pos]));
-			//localStorage.removeItem("carrito["+pos+"]");
+			carrito.pop(pos);
+			localStorage.setItem("carrito", JSON.stringify(carrito));
 		}
 	}
-};*/
+	refresh();
+};
+
+function addCantidad(pos){
+	carrito[pos].cantidad++;
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	refresh();
+};
+
+function removeCantidad(pos){
+	carrito[pos].cantidad--;
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	refresh();
+};
 
 function getProductosByIdSub(id) {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idSubcategoria="+id, function (data) {
@@ -255,6 +273,7 @@ function getProductosByIdCat(id) {
 		});
 	});
 }
+
 function getInicio() {
 	$.getJSON("http://localhost:8080/proyecto_final/ApiProductos", function (data) {
 		console.log(data);
@@ -322,23 +341,42 @@ function getInicio() {
 				$('#productoModal').slideDown();
 
 				$('.addCarrito').on("click", function () {
+					var existe = 0;
 					var producto = $(this).data();
 					console.log($(this).data());
+					producto.cantidad = 1;
 
-					console.log(carrito[producto.id]);
-					if (carrito[producto.id] === undefined) {
+					for (let i = 0; i < carrito.length; i++) {
+						if (producto.id == carrito[i].id) {
+							carrito[i].cantidad++;
+							existe = 1;
+						} 
+					}
+					
+					if (carrito.length == 0) {
+						carrito.push(producto);
+						console.log(carrito);
+					}else {
+						if (existe == 0) {
+							carrito.push(producto);
+							console.log(carrito);
+						}
+					}
+
+					//console.log(carrito[producto.id]);
+					/*if (carrito[producto.id] === undefined) {
 						producto.cantidad = 1;
 						carrito[producto.id] = producto;
 						console.log(true);
 					}else {
 						carrito[producto.id].cantidad ++;
 						console.log(false);
-					}
+					}*/
 					
 					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
 					localStorage.setItem("carrito", JSON.stringify(carrito));
 
-					/*$('#productoModal').slideUp("hide");*/
+					$('#productoModal').modal('hide');
 				});
 			});
 		});

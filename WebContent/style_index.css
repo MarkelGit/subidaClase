@@ -122,8 +122,7 @@
   -------------------------------------------------- */
   table {
     table-layout: fixed;
-    width: 250px;
-    justify-content: space-between;
+    width: 100%;
   }
   
   td {
@@ -143,4 +142,17 @@
 
   .borrar:hover {
     cursor: pointer;
+  }
+
+  .pedido {
+    padding: 10px;
+  }
+  
+  .precioTotal {
+    text-align: end;
+  }
+  
+  .pedidoButton {
+    float: left;
+    margin-left: 15px;
   }
