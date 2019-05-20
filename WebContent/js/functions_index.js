@@ -1,7 +1,7 @@
 var carrito
 $(document).ready(function () {
 	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
+  
 	getInicio();
 });
 
@@ -352,7 +352,6 @@ function getInicio() {
 							existe = 1;
 						} 
 					}
-					
 					if (carrito.length == 0) {
 						carrito.push(producto);
 						console.log(carrito);
@@ -372,7 +371,7 @@ function getInicio() {
 						carrito[producto.id].cantidad ++;
 						console.log(false);
 					}*/
-					
+			
 					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
 					localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -384,4 +383,3 @@ function getInicio() {
 
 	getCategorias();
 }
-
