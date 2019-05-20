@@ -110,7 +110,7 @@ function refresh(){
 		htmltable += '<td class="pedido" colspan="2">';
 		htmltable += '<a href="/resumen.html" type="button" class="btn btn-danger pedidoButton">Realizar pedido</a>';
 		htmltable += '</td>';
-		htmltable += '<td class="precioTotal" colspan="3"><b>Total: </b>'+precioTotal+"€"+'</td>';
+		htmltable += '<td class="precioTotal" colspan="2"><b>Total: </b>'+precioTotal+"€"+'</td>';
 		htmltable += '</tr>';
 
 	$('.carrito').html(htmltable);
