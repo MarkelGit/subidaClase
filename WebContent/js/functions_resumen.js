@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     $.getJSON("../producto.json", function (data) {
         var htmlzatia='';
         if (data.length>0){
@@ -27,5 +28,4 @@ $(document).ready(function () {
         $(".container").html(htmlzatia);
         }
     });
-
 });
