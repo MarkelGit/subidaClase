@@ -70,5 +70,13 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 		
 	}
 		}
+	public void last_id() throws SQLException
+	{
+		this.createConnection();
+		Statement st = this.con.createStatement();
+		ResultSet rs = st.executeQuery("CALL lastId");
+		this.idFactura= rs.getInt(1);
+		this.con.close();
+	}
 	
 }
