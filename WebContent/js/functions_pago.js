@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    /*$("#confirm-purchase_tarjeta").attr("disabled", true);*/
+    carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     $("#metodoDePago").change(function () {
         var id = $(this).val();
         console.log(id);

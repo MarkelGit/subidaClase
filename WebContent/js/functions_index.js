@@ -1,7 +1,7 @@
 var carrito
 $(document).ready(function () {
 	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  
+  {}
 	getInicio();
 });
 
