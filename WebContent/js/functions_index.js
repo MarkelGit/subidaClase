@@ -110,7 +110,7 @@ function refresh(){
 		htmltable += '<td class="pedido" colspan="2">';
 		htmltable += '<a href="/resumen.html" type="button" class="btn btn-danger pedidoButton">Realizar pedido</a>';
 		htmltable += '</td>';
-		htmltable += '<td class="precioTotal" colspan="2"><b>Total: </b>'+precioTotal+"€"+'</td>';
+		htmltable += '<td class="precioTotal" colspan="3"><b>Total: </b>'+precioTotal+"€"+'</td>';
 		htmltable += '</tr>';
 
 	$('.carrito').html(htmltable);
@@ -121,7 +121,7 @@ function removeItem(pos){
 
 	for (i in carrito) {
 		if (i == pos) {
-			carrito.pop(pos);
+			carrito.splice(pos, 1);
 			localStorage.setItem("carrito", JSON.stringify(carrito));
 		}
 	}
@@ -180,9 +180,8 @@ function getProductosByIdSub(id) {
 			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
 				console.log(dataPro);
 			
-				htmltitulo = '';
+				htmltitulo= '';
 				htmlbody = '';
-				htmlfooter = '';
 
 				var title = dataPro[0].nombre_producto;
 				var src =  dataPro[0].imagen;
@@ -199,51 +198,10 @@ function getProductosByIdSub(id) {
 				htmlbody += '<div class="precio">';
 				htmlbody += '<h3>'+precio+ "€" +'</h3>';
 				htmlbody += '</div>';
-				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
 				
-				console.log(dataPro);
 				$('#productoModal .modal-title').html(htmltitulo);
 				$('#productoModal .modal-body').html(htmlbody);
-				$('#productoModal .modal-footer').html(htmlfooter);
-				$('#productoModal').slideDown();
-
-				$('.addCarrito').on("click", function () {
-					var existe = 0;
-					var producto = $(this).data();
-					console.log($(this).data());
-					producto.cantidad = 1;
-
-					for (let i = 0; i < carrito.length; i++) {
-						if (producto.id == carrito[i].id) {
-							carrito[i].cantidad++;
-							existe = 1;
-						} 
-					}
-					if (carrito.length == 0) {
-						carrito.push(producto);
-						console.log(carrito);
-					}else {
-						if (existe == 0) {
-							carrito.push(producto);
-							console.log(carrito);
-						}
-					}
-
-					//console.log(carrito[producto.id]);
-					/*if (carrito[producto.id] === undefined) {
-						producto.cantidad = 1;
-						carrito[producto.id] = producto;
-						console.log(true);
-					}else {
-						carrito[producto.id].cantidad ++;
-						console.log(false);
-					}*/
-			
-					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
-					localStorage.setItem("carrito", JSON.stringify(carrito));
-
-					$('#productoModal').modal('hide');
-				});
+				$('#productoModal').modal('show');
 			});
 		});
 	});
@@ -289,9 +247,8 @@ function getProductosByIdCat(id) {
 			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
 				console.log(dataPro);
 			
-				htmltitulo = '';
+				htmltitulo= '';
 				htmlbody = '';
-				htmlfooter = '';
 
 				var title = dataPro[0].nombre_producto;
 				var src =  dataPro[0].imagen;
@@ -308,51 +265,10 @@ function getProductosByIdCat(id) {
 				htmlbody += '<div class="precio">';
 				htmlbody += '<h3>'+precio+ "€" +'</h3>';
 				htmlbody += '</div>';
-				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
 				
-				console.log(dataPro);
 				$('#productoModal .modal-title').html(htmltitulo);
 				$('#productoModal .modal-body').html(htmlbody);
-				$('#productoModal .modal-footer').html(htmlfooter);
-				$('#productoModal').slideDown();
-
-				$('.addCarrito').on("click", function () {
-					var existe = 0;
-					var producto = $(this).data();
-					console.log($(this).data());
-					producto.cantidad = 1;
-
-					for (let i = 0; i < carrito.length; i++) {
-						if (producto.id == carrito[i].id) {
-							carrito[i].cantidad++;
-							existe = 1;
-						} 
-					}
-					if (carrito.length == 0) {
-						carrito.push(producto);
-						console.log(carrito);
-					}else {
-						if (existe == 0) {
-							carrito.push(producto);
-							console.log(carrito);
-						}
-					}
-
-					//console.log(carrito[producto.id]);
-					/*if (carrito[producto.id] === undefined) {
-						producto.cantidad = 1;
-						carrito[producto.id] = producto;
-						console.log(true);
-					}else {
-						carrito[producto.id].cantidad ++;
-						console.log(false);
-					}*/
-			
-					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
-					localStorage.setItem("carrito", JSON.stringify(carrito));
-
-					$('#productoModal').modal('hide');
-				});
+				$('#productoModal').modal('show');
 			});
 		});
 	});

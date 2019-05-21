@@ -148,11 +148,6 @@
     padding: 10px;
   }
   
-  .precioTotal {
-    text-align: end;
-  }
-  
-  .pedidoButton {
-    float: left;
-    margin-left: 15px;
+  .pedidoFooter > td {
+    margin: 10px;
   }
