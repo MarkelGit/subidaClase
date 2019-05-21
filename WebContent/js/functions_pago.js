@@ -1,25 +1,38 @@
 $(document).ready(function () {
     /*$("#confirm-purchase_tarjeta").attr("disabled", true);*/
     $("#metodoDePago").change(function () {
-        var id=$(this).val();
+        var id = $(this).val();
         console.log(id);
-        if (id==1) {
-            var owner=$("#owner").val();
-            var cvv=$("#cvc").val();
-            var cardNumber=$("#cardNumber").val();
-            console.log(owner);
-            console.log(cvv);
-            console.log(cardNumber);
+        if (id == 1) {
             $("#contra_reembolso").fadeOut();
-            $(".creditCardForm").slideDown();  
-            /*if(owner !== "" && cvc !== "" && cardNumber !== ""){
-                console.log("aqui estoy");
-                $("#confirm-purchase_tarjeta").attr("disabled", false); 
-            }*/
+            $(".creditCardForm").slideDown();
         }
-        else{
+        else {
             $(".creditCardForm").slideUp();
             $("#contra_reembolso").fadeIn();
         }
     });
+    $("#owner").on("keyup", check);
+    $("#cvv").on("keyup", check);
+    $("#cardNumber").on("keyup", check);
+    $("#mes").on("change", check);
+    $("#year").on("change", check);
 });
+
+function check() {
+    var owner = $("#owner").val();
+    var cvv = $("#cvv").val();
+    var cardNumber = $("#cardNumber").val();
+    var mes = $("#mes").val();
+    var year = $("#year").val();
+    console.log(owner);
+    console.log(cvv);
+    console.log(cardNumber);
+    console.log(mes);
+    console.log(year);
+    if(owner !== "" && cvv !== "" && cardNumber !== "" && mes !== "00" && year !== "16") {
+        $("#confirm-purchase_tarjeta").attr("disabled", false); 
+    }else {
+        $("#confirm-purchase_tarjeta").attr("disabled", true);
+    }
+}
