@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class FacturaModel extends FacturaClass implements datos_empresa{
 	
 	private ArrayList<FacturaModel> list = new ArrayList<FacturaModel>();
-
+	private ArrayList<LineaModel> lineaList = new ArrayList<LineaModel>();
 	// ---- CONSTRUCTOR----
 
 	public FacturaModel() {
@@ -27,7 +27,7 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 		this.createConnection();
 		
 		Statement st = this.con.createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM factura");
+		ResultSet rs = st.executeQuery("CALL allFacturas");
 		
 		while (rs.next()) // reads the table line by line
 		{ 
@@ -49,8 +49,26 @@ public class FacturaModel extends FacturaClass implements datos_empresa{
 	{
 		this.createConnection();
 	  	Statement st = this.con.createStatement();            	
-	  	st.executeUpdate("DELETE FROM factura WHERE id_factura="+this.idFactura);
+	  	st.executeUpdate("CALL deleteFactura("+this.idFactura+")");
 	              	
 	        	this.con.close();
 	}
+	public void insert_data() throws SQLException
+	{
+		this.createConnection();
+	  	Statement st = this.con.createStatement();            	
+	  	st.executeUpdate("CALL insertFacturas('"+this.nombre_cliente+"','"+this.apellido_cliente+"','"+this.direccion_cliente+",'"+this.numero_tarjeta+"','"+this.caducidad_tarjeta+"','"+this.cvc_tarjeta+"','"+this.fecha_compra+"',"+this.precio_total+")");
+	              	
+	        	this.con.close();
+	}
+	public void insert_lineas() throws SQLException
+	{
+		this.createConnection();
+		Statement st = this.con.createStatement();
+		for (int i = 0; i < lineaList.size(); i++) {
+		st.executeUpdate("CALL insertLineas ("+lineaList.get(i).getNombre_producto()+","+lineaList.get(i).getCantidad()+","+lineaList.get(i).getPrecio_linea()+","+lineaList.get(i).getIdProducto()+","+this.idFactura+")");
+		
+	}
+		}
+	
 }

@@ -2,19 +2,19 @@ $(document).ready(function () {
     carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     $.getJSON("../producto.json", function (data) {
         var htmlzatia='';
-        if (data.length>0){
+        if (carrito.length>0){
         htmlzatia+='<tr class="titulos">';
         htmlzatia+='<td></td>';
         htmlzatia+='<td><h3>TITULO</h3></td>';
         htmlzatia+='<td><h3>CANTIDAD</h3></td>';
         htmlzatia+='<td><h3>PRECIO</h3></td>';
         htmlzatia+='</tr>';
-        for (let i in data) {
+        for (let i in carrito) {
             htmlzatia+='<tr>';
-            htmlzatia+='<td><img src="'+data[i].imagen+'"></td>';
-            htmlzatia+='<td>'+data[i].nombre_producto+'</td>';
-            htmlzatia+='<td>'+data[i].cantidad+'</td>';
-            htmlzatia+='<td>'+data[i].precio_producto*data[i].cantidad+'</td>'
+            htmlzatia+='<td><img src="'+carrito[i].imagen+'"></td>';
+            htmlzatia+='<td>'+carrito[i].nombre+'</td>';
+            htmlzatia+='<td>'+carrito[i].cantidad+'</td>';
+            htmlzatia+='<td>'+carrito[i].precio*carrito[i].cantidad+'</td>'
             htmlzatia+="</tr>";
             
         }
