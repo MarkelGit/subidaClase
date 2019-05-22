@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +9,17 @@
   <link href="css/style_pago.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style_tarjeta.css">
   <link rel="stylesheet" href="css/style_tarjeta2.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-    <script src="js/jquery.payform.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/functions_pago.js"></script>
-  <!-- <script src="js/functions_resumen.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+  <script src="js/jquery.payform.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/functions_pago.js"></script>
 </head>
-
 <body>
   <div class="container">
     <form action="http://localhost:8080/proyecto_final/CFactura" method="get">
@@ -80,7 +70,7 @@
           <div class="form-group" id="expiration-date">
             <label>Fecha de caducidad</label>
             <select id="mes" name="inMes">
-              <option value="00">...</option>
+              <option value="">...</option>
               <option value="01">January</option>
               <option value="02">February </option>
               <option value="03">March</option>
@@ -95,13 +85,13 @@
               <option value="12">December</option>
             </select>
             <select id="year" name="inYear">
-              <option value="16">...</option>
-              <option value="17">2019</option>
-              <option value="18">2020</option>
-              <option value="19">2021</option>
-              <option value="20">2022</option>
-              <option value="21">2023</option>
-              <option value="22">2024</option>
+              <option value="">...</option>
+              <option value="19">2019</option>
+              <option value="20">2020</option>
+              <option value="21">2021</option>
+              <option value="22">2022</option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
             </select>
           </div>
           <div class="form-group" id="credit_cards">
@@ -118,5 +108,4 @@
     </form>
   </div>
 </body>
-
 </html>

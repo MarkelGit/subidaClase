@@ -28,9 +28,8 @@ body {
 }
 
 #confirm-purchase_cr {
-    position:absolute;
-    bottom:0;
-    right:0;
+    float: right;
+    margin-top: 35px;
     width: 150px;
     color: white;
 }

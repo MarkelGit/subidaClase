@@ -54,12 +54,12 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 		this.con.close();
 	}
 
-	public void insert_data(double total) throws SQLException {
+	public void insert_data() throws SQLException {
 		this.createConnection();
 		Statement st = this.con.createStatement();
 		st.executeUpdate("CALL insertFacturas('" + this.nombre_cliente + "','" + this.apellido_cliente + "','"
 				+ this.direccion_cliente + "','" + this.numero_tarjeta + "','" + this.caducidad_tarjeta + "','"
-				+ this.cvc_tarjeta + "'," + total + ")");
+				+ this.cvc_tarjeta + "'," + this.precio_total + ")");
 
 		this.con.close();
 	}

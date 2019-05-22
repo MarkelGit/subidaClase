@@ -20,23 +20,40 @@
 <body>
 <%FacturaModel newFactura = (FacturaModel) request.getAttribute("newFactura");%>
 
-
-<h1><%=newFactura.nombre_empresa %></h1>
-<b>NIF: </b><%=newFactura.NIF %>
-<br>
-<%=newFactura.getNombre_cliente() %>
-<%=newFactura.getApellido_cliente() %>
-<%=newFactura.getDireccion_cliente() %>
-<table>
-<% for (int i=0; i<newFactura.getLineaList().size(); i++){ %>
-<tr>
-<td><%=newFactura.getLineaList().get(i).getNombre_producto() %></td>
-<td><%=newFactura.getLineaList().get(i).getCantidad() %>
-<td><%=newFactura.getLineaList().get(i).getPrecio_linea() %>
-<tr>
-</tr>
-<%} %>
-</table>
-<a href="http://127.0.0.1:5500/index.html">aaaa</a>
+	<div class="container">
+		<h1><%=newFactura.nombre_empresa %></h1>
+		<b>NIF: </b><%=newFactura.NIF %>
+		<br>
+		<b>Cliente: </b><%=newFactura.getNombre_cliente()%>
+						<%=newFactura.getApellido_cliente()%>
+		<br>
+		<b>Direccion: </b><%=newFactura.getDireccion_cliente() %>
+		
+		<table class="facturaFinal">
+			<tr class="titulos">
+				<td><h3><b>PRODUCTO</b></h3></td>
+				<td><h3><b>CANTIDAD</b></h3></td>
+				<td><h3><b>PRECIO (EUROS)</b></h3></td>
+			</tr>
+		
+		<% for (int i=0; i<newFactura.getLineaList().size(); i++){%>
+			<tr>
+				<td><%=newFactura.getLineaList().get(i).getNombre_producto()%></td>
+				<td><%=newFactura.getLineaList().get(i).getCantidad()%></td>
+				<td><%=newFactura.getLineaList().get(i).getPrecio_linea()%></td>
+			</tr>
+		<%} %>
+		
+			<tr>
+				<td></td>
+				<td></td>
+				<td><b>Precio Total (euros):</b> <%=newFactura.getPrecio_total()%></td>
+			</tr>
+		</table>
+        
+        <div class="boton">
+            <a href="http://127.0.0.1:5500/index.html" type="button" class="inicio">Inicio</a>
+        </div>
+	</div>
 </body>
 </html>
