@@ -1,6 +1,8 @@
+var totalStorage
 var carrito
 var carritoFactura
 $(document).ready(function () {
+	totalStorage = JSON.parse(localStorage.getItem('total'));
 	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   
 	getInicio();
@@ -113,12 +115,19 @@ function refresh(){
 		
 		htmltable += '<tr class="pedidoFooter">';
 		htmltable += '<td class="pedido" colspan="2">';
-		htmltable += '<a href="/resumen.html" type="button" class="btn btn-danger pedidoButton">Realizar pedido</a>';
+		htmltable += '<a href="/resumen.html" type="button" class="btn btn-danger pedidoButton" data-total="'+precioTotal+'">Realizar pedido</a>';
 		htmltable += '</td>';
 		htmltable += '<td class="precioTotal" colspan="3"><b>Total: </b>'+precioTotal+"€"+'</td>';
 		htmltable += '</tr>';
 
 	$('.carrito').html(htmltable);
+
+	$('.pedidoButton').on('click', function() {
+		var total = $(this).data(total);
+		
+		totalStorage = total;
+		localStorage.setItem("totalStorage", JSON.stringify(total));
+	});
 }
 
 function removeItem(pos){

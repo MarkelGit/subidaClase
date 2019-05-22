@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -41,9 +40,19 @@ public class CFactura extends HttpServlet {
 		String numero_tarjeta = request.getParameter("inCardNumber");
 		String cvc = request.getParameter("inCvv");
 		String mes = request.getParameter("inMes");
-		int year = Integer.parseInt(request.getParameter("inYear"));
+		String yearStr = request.getParameter("inYear");
 		
-		String caducidad_tarjeta = mes + "/" + year;
+		String caducidad_tarjeta;
+		
+		if (yearStr != "") {
+			int year = Integer.parseInt(yearStr);
+			caducidad_tarjeta = mes + "/" + year;
+		}else {
+			caducidad_tarjeta = "";
+		}
+		
+		String total = request.getParameter("totalFactura");
+		JSONObject vTotal = new JSONObject(total);
 		
 		FacturaModel newFactura = new FacturaModel();
 		
@@ -53,9 +62,10 @@ public class CFactura extends HttpServlet {
 		newFactura.setNumero_tarjeta(numero_tarjeta);
 		newFactura.setCaducidad_tarjeta(caducidad_tarjeta);
 		newFactura.setCvc_tarjeta(cvc);
+		newFactura.setPrecio_total(vTotal.getDouble("total"));
 		
 		try {
-			newFactura.insert_data(20.55);
+			newFactura.insert_data();
 			newFactura.last_id();
 			
 		} catch (SQLException e) {
@@ -80,15 +90,6 @@ public class CFactura extends HttpServlet {
 		
 		try {
 			newFactura.insert_lineas();
-			
-//			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
-//			response.setContentType("application/json");
-//			response.setCharacterEncoding("UTF-8");
-//		
-//	PrintWriter out = response.getWriter();
-//		out.print("respuesta: hola82");
-//		out.print(call);
-//			out.flush();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

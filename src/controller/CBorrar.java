@@ -15,13 +15,13 @@ import model.FacturaModel;
  * Servlet implementation class CBorrar2
  */
 @WebServlet("/CBorrar2")
-public class CBorrar2 extends HttpServlet {
+public class CBorrar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CBorrar2() {
+    public CBorrar() {
         super();
         // TODO Auto-generated constructor stub
     }

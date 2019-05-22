@@ -1,6 +1,7 @@
 body {
     background-color: #970e1c!important;
     padding: 30px;
+    min-width: 600px;
 }
 
 .container {
@@ -23,15 +24,23 @@ td > img {
 .containerProductos {
     display: flex;
     justify-content: center;
-    
 }
 
 #tablaProductos {
-    width: 80%;
+    width: 100%;
 }
 
-.titulos > td > h3 {
-    font-weight: bold;
+.resumenProductos {
+    background-color: whitesmoke;
+    margin: 10px;
+}
+
+.resumenProductos > td {
+    padding: 10px;
+}
+
+.titulos > td {
+    text-align: center;
 }
 
 .subtitulo {
@@ -52,4 +61,5 @@ td > img {
 .boton {
     text-align: right;
     color: white;
+    margin-top: 20px; 
 }
