@@ -1,6 +1,5 @@
 $(document).ready(function () {
     carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    $.getJSON("../producto.json", function (data) {
         var htmlzatia='';
         if (carrito.length>0){
         htmlzatia+='<tr class="titulos">';
@@ -19,7 +18,7 @@ $(document).ready(function () {
             
         }
         $("#tablaProductos").html(htmlzatia);
-        $(".boton").html('<button type="button" id=siguiente class="btn btn-danger">Siguiente</button>')
+        $(".boton").html('<a href="/pago.html" type="button" id=siguiente class="btn btn-danger">Siguiente</a>')
         }
         else {
         htmlzatia+='<h1 class="titulo">No se ha encontrado ningun producto en la cesta</h1>';
@@ -27,5 +26,4 @@ $(document).ready(function () {
         htmlzatia+='<img src="/imagenes/emptycart.png">';
         $(".container").html(htmlzatia);
         }
-    });
 });

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LineaModel extends LineaClass{
 	
-	private ArrayList<LineaClass> list = new ArrayList<LineaClass>();
+	private ArrayList<LineaModel> list = new ArrayList<LineaModel>();
 
 	// ---- CONSTRUCTOR----
 
@@ -16,7 +16,7 @@ public class LineaModel extends LineaClass{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<LineaClass> getList() {
+	public ArrayList<LineaModel> getList() {
 		return list;
 	}
 
