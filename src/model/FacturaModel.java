@@ -39,7 +39,7 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 			newC.setNumero_tarjeta(rs.getString(5));
 			newC.setCaducidad_tarjeta(rs.getString(6));
 			newC.setCvc_tarjeta(rs.getString(7));
-			newC.setFecha_compra(rs.getString(8));
+			//newC.setFecha_compra(rs.getString(8));
 			newC.setPrecio_total(Double.parseDouble(rs.getString(9)));
 			this.list.add(newC);
 		}
@@ -64,16 +64,20 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 		this.con.close();
 	}
 
-	public void insert_lineas() throws SQLException {
+	public String insert_lineas() throws SQLException {
 		this.createConnection();
+		String call = "";
 		Statement st = this.con.createStatement();
-		for (int i = 0; i < lineaList.size(); i++) {
-			st.executeUpdate("CALL insertLineas (" + lineaList.get(i).getNombre_producto() + ","
-					+ lineaList.get(i).getCantidad() + "," + lineaList.get(i).getPrecio_linea() + ","
-					+ lineaList.get(i).getIdProducto() + "," + this.idFactura + ")");
+		for (int i = 0; i < this.lineaList.size(); i++) {
+			 call = "CALL insertLineas ('" + this.lineaList.get(i).getNombre_producto() + "',"
+					+ this.lineaList.get(i).getCantidad() + "," + this.lineaList.get(i).getPrecio_linea() + ","
+					+ this.lineaList.get(i).getIdProducto() + "," + this.idFactura + ")";
+			
+			st.executeUpdate(call);
 
 		}
 		this.con.close();
+		return call;
 	}
 
 	public ArrayList<LineaModel> getLineaList() {

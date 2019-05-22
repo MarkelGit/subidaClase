@@ -21,7 +21,6 @@
 	<td>Numero de tarjeta</td>
 	<td>Fecha de caducidad</td>
 	<td>CVC</td>
-	<td>Fecha de compra</td>
 	<td>Precio total</td>
 	<td>borrar</td>
 	</tr>
@@ -29,16 +28,15 @@
 
 <%for (int i=0; i<newFactura.getList().size(); i++){%>
 	<tr>
-	<td><%=newFactura.getList().get(i).getIdFactura()%> </td>
+	 <td><%=newFactura.getList().get(i).getIdFactura()%> </td>
 	<td><%=newFactura.getList().get(i).getNombre_cliente()%></td>
 	<td><%=newFactura.getList().get(i).getApellido_cliente()%></td>
 	<td><%=newFactura.getList().get(i).getDireccion_cliente()%></td>
 	<td><%=newFactura.getList().get(i).getNumero_tarjeta() %></td>
 	<td><%=newFactura.getList().get(i).getCaducidad_tarjeta() %></td>
 	<td><%=newFactura.getList().get(i).getCvc_tarjeta()%></td>
-	<td><%=newFactura.getList().get(i).getFecha_compra()%></td>
 	<td><%=newFactura.getList().get(i).getPrecio_total()%></td>
-	<td style="text-align:center"><a href="http://localhost:8080/proyecto_final/CBorrar2?id=<%=newFactura.getList().get(i).getIdFactura()%>" onclick="if (confirm('Are you sure you want to delete?')) { form.action='/Config?pg=FIBiller&amp;cmd=delete'; } else { return false; }"> <img src="https://img.icons8.com/material-rounded/24/000000/waste.png"></a></td>
+	<td style="text-align:center"><a href="http://localhost:8080/proyecto_final/CBorrar2?id=<%=newFactura.getList().get(i).getIdFactura()%>" onclick="if (confirm('Are you sure you want to delete?')) { form.action='/Config?pg=FIBiller&amp;cmd=delete'; } else { return false; }"> <img src="https://img.icons8.com/material-rounded/24/000000/waste.png"></a></td> 
 	</tr>
 <%} %>
 </table>

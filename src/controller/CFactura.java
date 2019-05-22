@@ -61,19 +61,18 @@ public class CFactura extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("piña colada");
 		String carrito = request.getParameter("carrito");
-	
-		for (int i = 0; i < carrito.length(); i++) {
-			JSONArray vCarrito = new JSONArray(carrito);
-			
+		JSONArray vCarrito = new JSONArray(carrito);
+		
+		for (int i = 0; i < 2; i++) {
 			LineaModel newLinea = new LineaModel();
 			
 			JSONObject compra = vCarrito.getJSONObject(i);
 			
 			newLinea.setNombre_producto(compra.getString("nombre"));
-			newLinea.setCantidad(Integer.parseInt(compra.getString("cantidad")));
-			newLinea.setPrecio_linea(Double.parseDouble(compra.getString("precio")));
+			newLinea.setCantidad(compra.getInt("cantidad"));
+			newLinea.setPrecio_linea(compra.getDouble("precio"));
 			newLinea.setIdProducto(compra.getInt("id"));
 			newLinea.setIdFactura(newFactura.getIdFactura());
 			
@@ -81,22 +80,23 @@ public class CFactura extends HttpServlet {
 		}
 		
 		try {
-			newFactura.insert_lineas();
+			String call = newFactura.insert_lineas();
 			
-			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			
-			PrintWriter out = response.getWriter();
-			out.print("respuesta: hola82");
-			out.flush();
+//			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+//			response.setContentType("application/json");
+//			response.setCharacterEncoding("UTF-8");
+//		
+//	PrintWriter out = response.getWriter();
+//		out.print("respuesta: hola82");
+//		out.print(call);
+//			out.flush();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//request.setAttribute("newFactura", newFactura);
-		//request.getRequestDispatcher("admin.jsp").forward(request, response);
+		request.setAttribute("newFactura", newFactura);
+		request.getRequestDispatcher("admin.jsp").forward(request, response);
 
 	}
 
