@@ -90,11 +90,15 @@ function refresh(){
 		htmltable += '<td class="img" style="width:100px"><img style="max-width:50px" src="'+carrito[i].imagen+'"></td>';
 		htmltable += '<td class="titulo">'+carrito[i].nombre+'</td>';
 		htmltable += '<td class="cantidad">';
-		htmltable += '<div class="aumentar" onclick="addCantidad('+i+')"> <img src="iconos/aumentar.png">';
+		if (carrito[i].cantidad < carrito[i].stock) {
+			htmltable += '<div class="aumentar" onclick="addCantidad('+i+')"> <img src="iconos/aumentar.png">';
+		}
 		htmltable += '</div>';
 		htmltable += '<div class="cantidad-flexible">'+carrito[i].cantidad;
 		htmltable += '</div>';
-		htmltable += '<div class="disminuir" onclick="removeCantidad('+i+')"> <img src="iconos/disminuir.png">';
+		if (carrito[i].cantidad !== 1) {
+			htmltable += '<div class="disminuir" onclick="removeCantidad('+i+')"> <img src="iconos/disminuir.png">';
+		}
 		htmltable += '</div>';
 		htmltable += '</td>';
 		htmltable += '<td class="precioCantidad">'+precioCantidad+"€"+'</td>';
@@ -170,41 +174,7 @@ function getProductosByIdSub(id) {
 		
 		$('.row').html(html);
 
-		$('.modalButton').on("click", function () {
-			var id = $(this).data("id");
-			console.log(id);
-
-			$("#productoModal .modal-title").text("Datuak kargatzen");
-			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
-			$('#productoModal').modal('show');
-
-			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
-				console.log(dataPro);
-			
-				htmltitulo= '';
-				htmlbody = '';
-
-				var title = dataPro[0].nombre_producto;
-				var src =  dataPro[0].imagen;
-				var descripcion = dataPro[0].descripcion;
-				var precio = dataPro[0].precio_producto;
-
-				htmltitulo += '<h2>'+title+'</h2>';
-				htmlbody += '<div class="imagen">';
-				htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
-				htmlbody += '</div>';
-				htmlbody += '<div class="descripcion">';
-				htmlbody += '<p>'+descripcion+'</p>';
-				htmlbody += '</div>';
-				htmlbody += '<div class="precio">';
-				htmlbody += '<h3>'+precio+ "€" +'</h3>';
-				htmlbody += '</div>';
-				
-				$('#productoModal .modal-title').html(htmltitulo);
-				$('#productoModal .modal-body').html(htmlbody);
-				$('#productoModal').modal('show');
-			});
-		});
+		$('.modalButton').on("click", printModal);
 	});
 }
 
@@ -237,41 +207,7 @@ function getProductosByIdCat(id) {
 		
 		$('.row').html(html);
 
-		$('.modalButton').on("click", function () {
-			var id = $(this).data("id");
-			console.log(id);
-
-			$("#productoModal .modal-title").text("Datuak kargatzen");
-			$("#productoModal .modal-body").html('<div class="spinner-border text-danger" role="status"></div>');
-			$('#productoModal').modal('show');
-
-			$.getJSON("http://localhost:8080/proyecto_final/ApiProductos?idProducto="+id, function (dataPro) {
-				console.log(dataPro);
-			
-				htmltitulo= '';
-				htmlbody = '';
-
-				var title = dataPro[0].nombre_producto;
-				var src =  dataPro[0].imagen;
-				var descripcion = dataPro[0].descripcion;
-				var precio = dataPro[0].precio_producto;
-
-				htmltitulo += '<h2>'+title+'</h2>';
-				htmlbody += '<div class="imagen">';
-				htmlbody += '<img style="float:left; margin:10px;" src="'+src+'">';
-				htmlbody += '</div>';
-				htmlbody += '<div class="descripcion">';
-				htmlbody += '<p>'+descripcion+'</p>';
-				htmlbody += '</div>';
-				htmlbody += '<div class="precio">';
-				htmlbody += '<h3>'+precio+ "€" +'</h3>';
-				htmlbody += '</div>';
-				
-				$('#productoModal .modal-title').html(htmltitulo);
-				$('#productoModal .modal-body').html(htmlbody);
-				$('#productoModal').modal('show');
-			});
-		});
+		$('.modalButton').on("click", printModal);
 	});
 }
 
@@ -303,8 +239,14 @@ function getInicio() {
 		}
 		$('.row').html(html);
 
-		$('.modalButton').on("click", function () {
-			var id = $(this).data("id");
+		$('.modalButton').on("click", printModal);	
+	});
+
+	getCategorias();
+}
+
+function printModal() {
+	var id = $(this).data("id");
 			console.log(id);
 
 			$("#productoModal .modal-title").text("Datuak kargatzen");
@@ -333,7 +275,7 @@ function getInicio() {
 				htmlbody += '<div class="precio">';
 				htmlbody += '<h3>'+precio+ "€" +'</h3>';
 				htmlbody += '</div>';
-				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
+				htmlfooter += '<button type="button" class="btn btn-danger addCarrito" data-stock="'+dataPro[0].stock+'" data-nombre="'+title+'" data-imagen="'+src+'" data-precio="'+precio+'" data-id="'+dataPro[0].idProducto+'">Añadir al carrito</button>';
 				
 				console.log(dataPro);
 				$('#productoModal .modal-title').html(htmltitulo);
@@ -363,24 +305,9 @@ function getInicio() {
 						}
 					}
 
-					//console.log(carrito[producto.id]);
-					/*if (carrito[producto.id] === undefined) {
-						producto.cantidad = 1;
-						carrito[producto.id] = producto;
-						console.log(true);
-					}else {
-						carrito[producto.id].cantidad ++;
-						console.log(false);
-					}*/
-			
-					//localStorage.setItem('carrito'+carrito[id].id+'', JSON.stringify(carrito));
 					localStorage.setItem("carrito", JSON.stringify(carrito));
 
 					$('#productoModal').modal('hide');
 				});
 			});
-		});
-	});
-
-	getCategorias();
 }

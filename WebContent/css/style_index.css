@@ -13,7 +13,18 @@
     box-sizing: border-box;
     background-color: #970e1c!important;
   }
+
+    /* CUSTOMIZE THE NAVBAR
+  -------------------------------------------------- */
+  .navbar-nav {
+    float: left;
+  }
   
+  .btn-group {
+    float: right;
+    padding-top: 10px;
+  }
+
   /* CUSTOMIZE THE CONTAINER
   -------------------------------------------------- */
   .container {
@@ -24,12 +35,11 @@
 
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
-  /* Carousel base class */
   .carousel {
     margin-top: 0;
     margin-bottom: 4rem;
   }
-  /* Since positioning the image, we need to help out the caption */
+
   .carousel-caption {
     bottom: 3rem;
     z-index: 10;
@@ -39,7 +49,6 @@
     color: rgb(151, 151, 151);
   }
   
-  /* Declare heights because of positioning of img element */
   .carousel-item {
     height: 32rem;
   }
@@ -68,7 +77,6 @@
   .card-body > .title> h5 {
     text-align: initial; 
     text-overflow: ellipsis;
-    
   }
 
   .card > img {
