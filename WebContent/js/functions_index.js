@@ -1,4 +1,5 @@
 var carrito
+var carritoFactura
 $(document).ready(function () {
 	carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   

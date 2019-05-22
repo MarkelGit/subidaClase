@@ -39,8 +39,8 @@ td > img {
 }
 
 .subtitulo > a {
-color: #707070;
-font-weight: bolder;
+    color: #707070;
+    font-weight: bolder;
 }
 
 .container > img {
@@ -51,4 +51,5 @@ font-weight: bolder;
 
 .boton {
     text-align: right;
+    color: white;
 }

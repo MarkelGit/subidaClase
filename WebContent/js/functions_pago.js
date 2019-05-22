@@ -1,5 +1,9 @@
 $(document).ready(function () {
-    /*$("#confirm-purchase_tarjeta").attr("disabled", true);*/
+    carritoFactura = localStorage.getItem('carrito');
+    localStorage.setItem("carritoFactura", JSON.stringify(carritoFactura));
+    
+    $(".lineasFactura").html("<input type='text' name='carritoFactura' value='"+carritoFactura+"'>");
+
     $("#metodoDePago").change(function () {
         var id = $(this).val();
         console.log(id);

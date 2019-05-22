@@ -34,3 +34,6 @@ body {
     width: 150px;
     color: white;
 }
+.lineasFactura>input{
+    display: none;
+}

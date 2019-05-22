@@ -42,7 +42,7 @@ public class CBorrar2 extends HttpServlet {
 		}
 		
 		//System.out.print(id);
-		//response.sendRedirect("CAdmin");
+		response.sendRedirect("CAdmin");
 	}
 
 	/**
