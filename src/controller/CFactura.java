@@ -96,7 +96,7 @@ public class CFactura extends HttpServlet {
 		}
 		
 		request.setAttribute("newFactura", newFactura);
-		request.getRequestDispatcher("admin.jsp").forward(request, response);
+		request.getRequestDispatcher("factura.jsp").forward(request, response);
 
 	}
 
