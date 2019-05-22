@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2019 a las 14:33:45
+-- Tiempo de generación: 22-05-2019 a las 14:56:42
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.1.21
 
@@ -29,11 +29,26 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `allCategorias` ()  NO SQL
 SELECT * FROM categoria$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `allFacturas` ()  NO SQL
+SELECT * FROM factura$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `allProductos` ()  NO SQL
 SELECT * FROM producto$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `allSubcategorias` ()  NO SQL
 SELECT * from subcategoria$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteFactura` (IN `id` INT)  NO SQL
+DELETE FROM factura WHERE id_factura=id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertFacturas` (IN `nombre` VARCHAR(32), IN `apellido` VARCHAR(32), IN `direccion` VARCHAR(32), IN `numTarjeta` VARCHAR(18), IN `cadTarjeta` VARCHAR(32), IN `cvcTarjeta` VARCHAR(4), IN `precio` DOUBLE)  NO SQL
+INSERT INTO `factura`(`nombre_cliente`, `apellido_cliente`, `direccion_cliente`, `numero_tarjeta`, `caducidad_tarjeta`, `cvc_tarjeta`, `fecha_compra`, `precio_total`) VALUES (nombre,apellido,direccion,numTarjeta,cadTarjeta,cvcTarjeta,Now(),precio)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertLineas` (IN `nombre` VARCHAR(32), IN `cantidad` INT, IN `precLinea` VARCHAR(32), IN `idProducto` INT, IN `idFactura` INT)  NO SQL
+INSERT INTO `linea`(`nombre_producto`, `cantidad`, `precio_linea`, `id_producto`, `id_factura`) VALUES (nombre,cantidad,precLinea,idProducto,idFactura)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `lastId` ()  NO SQL
+SELECT MAX(id_factura) AS ultima_id FROM factura$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `productosByIdCategoria` (IN `id` INT)  NO SQL
 SELECT producto.* FROM `producto` JOIN subcategoria ON producto.id_subcategoria=subcategoria.id_subcategoria WHERE subcategoria.id_categoria=id$$
@@ -79,7 +94,7 @@ CREATE TABLE `factura` (
   `numero_tarjeta` varchar(18) COLLATE utf8_unicode_ci DEFAULT NULL,
   `caducidad_tarjeta` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cvc_tarjeta` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fecha_compra` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha_compra` date NOT NULL,
   `precio_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -88,8 +103,8 @@ CREATE TABLE `factura` (
 --
 
 INSERT INTO `factura` (`id_factura`, `nombre_cliente`, `apellido_cliente`, `direccion_cliente`, `numero_tarjeta`, `caducidad_tarjeta`, `cvc_tarjeta`, `fecha_compra`, `precio_total`) VALUES
-(1, 'Paco', 'Sanz', 'calle falsa 123', '12324324323', '07/05/2022', '3213', '07/05/2019', 140.25),
-(2, 'Markel', 'Rodriguez', 'calle falsa 123', '21312343', '07/05/2022', '2222', '07/05/2019', 182.2);
+(87, 'efe', 'werwre', 'werwer', '3425 353535 34532', '09/20', '3453', '2019-05-22', 20.55),
+(88, 'final', 'casi', 'escopeta', '123123123123123', '10/19', '123', '2019-05-22', 20.55);
 
 -- --------------------------------------------------------
 
@@ -156,10 +171,19 @@ CREATE TABLE `linea` (
   `id_linea` int(11) NOT NULL,
   `nombre_producto` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precio_linea` double NOT NULL,
+  `precio_linea` decimal(10,2) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `id_factura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `linea`
+--
+
+INSERT INTO `linea` (`id_linea`, `nombre_producto`, `cantidad`, `precio_linea`, `id_producto`, `id_factura`) VALUES
+(78, 'Rurouni Kenshin 01', 1, '10.00', 9, 88),
+(79, 'Ex Machina 01', 1, '11.82', 8, 88),
+(80, 'Akira 01', 1, '22.50', 1, 88);
 
 -- --------------------------------------------------------
 
@@ -293,13 +317,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
