@@ -64,20 +64,16 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 		this.con.close();
 	}
 
-	public String insert_lineas() throws SQLException {
+	public void insert_lineas() throws SQLException {
 		this.createConnection();
-		String call = "";
 		Statement st = this.con.createStatement();
 		for (int i = 0; i < this.lineaList.size(); i++) {
-			 call = "CALL insertLineas ('" + this.lineaList.get(i).getNombre_producto() + "',"
+			st.executeUpdate("CALL insertLineas ('" + this.lineaList.get(i).getNombre_producto() + "',"
 					+ this.lineaList.get(i).getCantidad() + "," + this.lineaList.get(i).getPrecio_linea() + ","
-					+ this.lineaList.get(i).getIdProducto() + "," + this.idFactura + ")";
-			
-			st.executeUpdate(call);
+					+ this.lineaList.get(i).getIdProducto() + "," + this.idFactura + ")");
 
 		}
 		this.con.close();
-		return call;
 	}
 
 	public ArrayList<LineaModel> getLineaList() {

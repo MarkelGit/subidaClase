@@ -61,11 +61,10 @@ public class CFactura extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("piña colada");
-		String carrito = request.getParameter("carrito");
+		String carrito = request.getParameter("carritoFactura");
 		JSONArray vCarrito = new JSONArray(carrito);
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < vCarrito.length(); i++) {
 			LineaModel newLinea = new LineaModel();
 			
 			JSONObject compra = vCarrito.getJSONObject(i);
@@ -80,7 +79,7 @@ public class CFactura extends HttpServlet {
 		}
 		
 		try {
-			String call = newFactura.insert_lineas();
+			newFactura.insert_lineas();
 			
 //			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
 //			response.setContentType("application/json");
