@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    carrito = localStorage.getItem('carrito');
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    carritoFactura = localStorage.getItem('carrito');
+    localStorage.setItem("carritoFactura", JSON.stringify(carritoFactura));
     
-    $(".lineasFactura").html("<input type='text' name='carrito' value='"+carrito+"'>");
+    $(".lineasFactura").html("<input type='text' name='carritoFactura' value='"+carritoFactura+"'>");
 
     $("#metodoDePago").change(function () {
         var id = $(this).val();
@@ -22,8 +22,6 @@ $(document).ready(function () {
     $("#mes").on("change", check);
     $("#year").on("change", check);
 });
-
-
 
 function check() {
     var owner = $("#owner").val();
