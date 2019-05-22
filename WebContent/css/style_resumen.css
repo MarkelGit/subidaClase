@@ -23,6 +23,7 @@ td > img {
 .containerProductos {
     display: flex;
     justify-content: center;
+    
 }
 
 #tablaProductos {
