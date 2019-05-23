@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Factura</title>
+<title>Misuri Comics</title>
 </head>
 <link href="css/style_factura.css" rel="stylesheet">
 
@@ -27,7 +27,7 @@
 		<b>Cliente: </b><%=newFactura.getNombre_cliente()%>
 						<%=newFactura.getApellido_cliente()%>
 		<br>
-		<b>Direccion: </b><%=newFactura.getDireccion_cliente() %>
+		<b>Direccion: </b><%=newFactura.getDireccion_cliente()%>
 		
 		<table class="facturaFinal">
 			<tr class="titulos">
@@ -52,7 +52,7 @@
 		</table>
         
         <div class="boton">
-            <a href="http://127.0.0.1:5500/index.html" type="button" class="inicio">Inicio</a>
+            <a href="http://127.0.0.1:5500/index.html" type="button" class="btn btn-danger inicio">Inicio</a>
         </div>
 	</div>
 </body>

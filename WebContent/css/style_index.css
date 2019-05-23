@@ -65,7 +65,8 @@
   .col-md-4 {
     min-height: 625px;
     max-height: 650px;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .title {
@@ -148,14 +149,18 @@
     padding-right: 25px;
   }
 
+  .aumentar:hover {
+    cursor: pointer;
+  }
+
+  .disminuir {
+    cursor: pointer;
+  }
+  
   .borrar:hover {
     cursor: pointer;
   }
 
   .pedido {
     padding: 10px;
-  }
-  
-  .pedidoFooter > td {
-    margin: 10px;
   }
