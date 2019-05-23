@@ -24,8 +24,7 @@
 		<h1><%=newFactura.nombre_empresa %></h1>
 		<b>NIF: </b><%=newFactura.NIF %>
 		<br>
-		<b>Cliente: </b><%=newFactura.getNombre_cliente()%>
-						<%=newFactura.getApellido_cliente()%>
+		<b>Cliente: </b><%=newFactura.getNombre_cliente()%><%=newFactura.getApellido_cliente()%>
 		<br>
 		<b>Direccion: </b><%=newFactura.getDireccion_cliente()%>
 		
