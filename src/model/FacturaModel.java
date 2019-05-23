@@ -20,6 +20,18 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 	public ArrayList<FacturaModel> getList() {
 		return list;
 	}
+	
+	public void setList(ArrayList<FacturaModel> list) {
+		this.list = list;
+	}
+	
+	public ArrayList<LineaModel> getLineaList() {
+		return lineaList;
+	}
+
+	public void setLineaList(ArrayList<LineaModel> lineaList) {
+		this.lineaList = lineaList;
+	}
 
 	// ---- methods
 	public void loadData() throws SQLException {
@@ -39,7 +51,7 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 			newC.setNumero_tarjeta(rs.getString(5));
 			newC.setCaducidad_tarjeta(rs.getString(6));
 			newC.setCvc_tarjeta(rs.getString(7));
-			//newC.setFecha_compra(rs.getString(8));
+			newC.setFecha_compra(rs.getString(8));
 			newC.setPrecio_total(Double.parseDouble(rs.getString(9)));
 			this.list.add(newC);
 		}
@@ -74,18 +86,6 @@ public class FacturaModel extends FacturaClass implements datos_empresa {
 
 		}
 		this.con.close();
-	}
-
-	public ArrayList<LineaModel> getLineaList() {
-		return lineaList;
-	}
-
-	public void setLineaList(ArrayList<LineaModel> lineaList) {
-		this.lineaList = lineaList;
-	}
-
-	public void setList(ArrayList<FacturaModel> list) {
-		this.list = list;
 	}
 
 	public void last_id() throws SQLException {
