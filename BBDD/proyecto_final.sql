@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2019 a las 14:56:42
+-- Tiempo de generación: 23-05-2019 a las 09:12:41
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.1.21
 
@@ -98,14 +98,6 @@ CREATE TABLE `factura` (
   `precio_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Volcado de datos para la tabla `factura`
---
-
-INSERT INTO `factura` (`id_factura`, `nombre_cliente`, `apellido_cliente`, `direccion_cliente`, `numero_tarjeta`, `caducidad_tarjeta`, `cvc_tarjeta`, `fecha_compra`, `precio_total`) VALUES
-(87, 'efe', 'werwre', 'werwer', '3425 353535 34532', '09/20', '3453', '2019-05-22', 20.55),
-(88, 'final', 'casi', 'escopeta', '123123123123123', '10/19', '123', '2019-05-22', 20.55);
-
 -- --------------------------------------------------------
 
 --
@@ -175,15 +167,6 @@ CREATE TABLE `linea` (
   `id_producto` int(11) NOT NULL,
   `id_factura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `linea`
---
-
-INSERT INTO `linea` (`id_linea`, `nombre_producto`, `cantidad`, `precio_linea`, `id_producto`, `id_factura`) VALUES
-(78, 'Rurouni Kenshin 01', 1, '10.00', 9, 88),
-(79, 'Ex Machina 01', 1, '11.82', 8, 88),
-(80, 'Akira 01', 1, '22.50', 1, 88);
 
 -- --------------------------------------------------------
 
@@ -311,19 +294,19 @@ ALTER TABLE `subcategoria`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de la tabla `linea`
 --
 ALTER TABLE `linea`
-  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -346,7 +329,7 @@ ALTER TABLE `subcategoria`
 --
 ALTER TABLE `linea`
   ADD CONSTRAINT `linea_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`),
-  ADD CONSTRAINT `linea_ibfk_2` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`);
+  ADD CONSTRAINT `linea_ibfk_2` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id_factura`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
