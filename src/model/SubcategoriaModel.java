@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class SubcategoriaModel extends SubcategoriaClass{
 	
-	private ArrayList<SubcategoriaClass> list = new ArrayList<SubcategoriaClass>();
+	private ArrayList<SubcategoriaModel> list = new ArrayList<SubcategoriaModel>();
 
 	// ---- CONSTRUCTOR----
 
@@ -16,7 +16,7 @@ public class SubcategoriaModel extends SubcategoriaClass{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<SubcategoriaClass> getList() {
+	public ArrayList<SubcategoriaModel> getList() {
 		return list;
 	}
 

@@ -52,6 +52,7 @@
   .carousel-item {
     height: 32rem;
   }
+
   .carousel-item > img {
     position: absolute;
     top: 0;
@@ -75,7 +76,7 @@
     margin-bottom: 10px;
   }
 
-  .card-body > .title> h5 {
+  .card-body > .title > h5 {
     text-align: initial; 
     text-overflow: ellipsis;
   }
@@ -95,6 +96,10 @@
   .card-body > .paragraph> p {
     text-align: justify;
     text-overflow: ellipsis;
+  }
+
+  .modalButton {
+    margin-right: 2px;
   }
 
   /* CUSTOMIZE THE MODAL

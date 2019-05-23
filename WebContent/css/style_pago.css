@@ -33,6 +33,7 @@ body {
     width: 150px;
     color: white;
 }
-.lineasFactura>input{
+
+.lineasFactura > input {
     display: none;
 }

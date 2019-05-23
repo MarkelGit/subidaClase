@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CategoriaModel extends CategoriaClass{
 	
-	private ArrayList<CategoriaClass> list = new ArrayList<CategoriaClass>();
+	private ArrayList<CategoriaModel> list = new ArrayList<CategoriaModel>();
 
 	// ---- CONSTRUCTOR----
 
@@ -16,7 +16,7 @@ public class CategoriaModel extends CategoriaClass{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<CategoriaClass> getList() {
+	public ArrayList<CategoriaModel> getList() {
 		return list;
 	}
 

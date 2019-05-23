@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     $("#metodoDePago").change(function () {
         var id = $(this).val();
-        console.log(id);
+
         if (id == 1) {
             $("#contra_reembolso").fadeOut();
             $(".creditCardForm").slideDown();
@@ -22,6 +22,7 @@ $(document).ready(function () {
             $(".creditCardForm").slideUp();
         }
     });
+    
     $("#owner").on("keyup", check);
     $("#cvv").on("keyup", check);
     $("#cardNumber").on("keyup", check);
@@ -35,11 +36,7 @@ function check() {
     var cardNumber = $("#cardNumber").val();
     var mes = $("#mes").val();
     var year = $("#year").val();
-    console.log(owner);
-    console.log(cvv);
-    console.log(cardNumber);
-    console.log(mes);
-    console.log(year);
+
     if(owner !== "" && cvv !== "" && cardNumber !== "" && mes !== "" && year !== "") {
         $("#confirm-purchase_tarjeta").attr("disabled", false); 
     }else {
